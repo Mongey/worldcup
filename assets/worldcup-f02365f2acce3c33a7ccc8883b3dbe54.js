@@ -177,36 +177,36 @@ var u=function(e){(function(e,t){if("function"!=typeof t&&null!==t)throw new Typ
 e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,writable:!0,configurable:!0}}),t&&r(e,t)})(i,Ember.Route)
 var o=n(i)
 function i(){return t(this,i),o.apply(this,arguments)}return i}()
-e.default=u})),define("worldcup/routes/worldcup",["exports","ember-concurrency-ts"],(function(e,t){var r,n,o,i,u
-function l(e,t,r,n,o,i,u){try{var l=e[i](u),a=l.value}catch(c){return void r(c)}l.done?t(a):Promise.resolve(a).then(n,o)}function a(e,t,r,n){r&&Object.defineProperty(e,t,{enumerable:r.enumerable,configurable:r.configurable,writable:r.writable,value:r.initializer?r.initializer.call(n):void 0})}function c(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function f(e,t){for(var r=0;r<t.length;r++){var n=t[r]
-n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n)}}function p(e,t){return(p=Object.setPrototypeOf||function(e,t){return e.__proto__=t,e})(e,t)}function s(e){var t=function(){if("undefined"==typeof Reflect||!Reflect.construct)return!1
+e.default=u})),define("worldcup/routes/worldcup",["exports","ember-concurrency-ts","worldcup/config/environment"],(function(e,t,r){var n,o,i,u,l
+function a(e,t,r,n,o,i,u){try{var l=e[i](u),a=l.value}catch(c){return void r(c)}l.done?t(a):Promise.resolve(a).then(n,o)}function c(e,t,r,n){r&&Object.defineProperty(e,t,{enumerable:r.enumerable,configurable:r.configurable,writable:r.writable,value:r.initializer?r.initializer.call(n):void 0})}function f(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function p(e,t){for(var r=0;r<t.length;r++){var n=t[r]
+n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n)}}function s(e,t){return(s=Object.setPrototypeOf||function(e,t){return e.__proto__=t,e})(e,t)}function d(e){var t=function(){if("undefined"==typeof Reflect||!Reflect.construct)return!1
 if(Reflect.construct.sham)return!1
 if("function"==typeof Proxy)return!0
 try{return Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){}))),!0}catch(e){return!1}}()
-return function(){var r,n=m(e)
-if(t){var o=m(this).constructor
+return function(){var r,n=y(e)
+if(t){var o=y(this).constructor
 r=Reflect.construct(n,arguments,o)}else r=n.apply(this,arguments)
-return d(this,r)}}function d(e,t){return!t||"object"!==_typeof(t)&&"function"!=typeof t?b(e):t}function b(e){if(void 0===e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called")
-return e}function m(e){return(m=Object.setPrototypeOf?Object.getPrototypeOf:function(e){return e.__proto__||Object.getPrototypeOf(e)})(e)}function y(e,t,r,n,o){var i={}
+return b(this,r)}}function b(e,t){return!t||"object"!==_typeof(t)&&"function"!=typeof t?m(e):t}function m(e){if(void 0===e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called")
+return e}function y(e){return(y=Object.setPrototypeOf?Object.getPrototypeOf:function(e){return e.__proto__||Object.getPrototypeOf(e)})(e)}function h(e,t,r,n,o){var i={}
 return Object.keys(n).forEach((function(e){i[e]=n[e]})),i.enumerable=!!i.enumerable,i.configurable=!!i.configurable,("value"in i||i.initializer)&&(i.writable=!0),i=r.slice().reverse().reduce((function(r,n){return n(e,t,r)||r}),i),o&&void 0!==i.initializer&&(i.value=i.initializer?i.initializer.call(o):void 0,i.initializer=void 0),void 0===i.initializer&&(Object.defineProperty(e,t,i),i=null),i}Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
-var h=(r=Ember.inject.service,n=Ember.inject.service,i=y((o=function(e){(function(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function")
-e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,writable:!0,configurable:!0}}),t&&p(e,t)})(h,Ember.Route)
-var r,n,o,d,m,y=s(h)
-function h(){var e
-c(this,h)
+var g=(n=Ember.inject.service,o=Ember.inject.service,u=h((i=function(e){(function(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function")
+e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,writable:!0,configurable:!0}}),t&&s(e,t)})(g,Ember.Route)
+var n,o,i,b,y,h=d(g)
+function g(){var e
+f(this,g)
 for(var t=arguments.length,r=new Array(t),n=0;n<t;n++)r[n]=arguments[n]
-return a(b(e=y.call.apply(y,[this].concat(r))),"api",i,b(e)),a(b(e),"sweepstakes",u,b(e)),e}return r=h,(n=[{key:"model",value:(d=regeneratorRuntime.mark((function e(r){var n,o,i
-return regeneratorRuntime.wrap((function(e){for(;;)switch(e.prev=e.next){case 0:return e.prev=0,e.next=3,fetch("/players/".concat(r.id,".json"))
-case 3:return o=e.sent,e.next=6,o.json()
-case 6:i=e.sent,n=i.players,e.next=13
+return c(m(e=h.call.apply(h,[this].concat(r))),"api",u,m(e)),c(m(e),"sweepstakes",l,m(e)),e}return n=g,(o=[{key:"model",value:(b=regeneratorRuntime.mark((function e(n){var o,i,u,l
+return regeneratorRuntime.wrap((function(e){for(;;)switch(e.prev=e.next){case 0:return null!==(i=n.id)&&(i=r.default.APP.default_team),e.prev=2,e.next=5,fetch("/players/".concat(i,".json"))
+case 5:return u=e.sent,e.next=8,u.json()
+case 8:l=e.sent,o=l.players,e.next=15
 break
-case 10:e.prev=10,e.t0=e.catch(0),n=[]
-case 13:return this.sweepstakes.setPlayers(n),e.next=16,(0,t.taskFor)(this.api.loadModel).perform()
-case 16:return(0,t.taskFor)(this.api.enqueueRefresh).perform(),e.abrupt("return",this.api.model)
-case 18:case"end":return e.stop()}}),e,this,[[0,10]])})),m=function(){var e=this,t=arguments
-return new Promise((function(r,n){var o=d.apply(e,t)
-function i(e){l(o,r,n,i,u,"next",e)}function u(e){l(o,r,n,i,u,"throw",e)}i(void 0)}))},function(e){return m.apply(this,arguments)})}])&&f(r.prototype,n),o&&f(r,o),h}()).prototype,"api",[r],{configurable:!0,enumerable:!0,writable:!0,initializer:null}),u=y(o.prototype,"sweepstakes",[n],{configurable:!0,enumerable:!0,writable:!0,initializer:null}),o)
-e.default=h})),define("worldcup/serializers/-default",["exports","@ember-data/serializer/json"],(function(e,t){Object.defineProperty(e,"__esModule",{value:!0}),Object.defineProperty(e,"default",{enumerable:!0,get:function(){return t.default}})})),define("worldcup/serializers/-json-api",["exports","@ember-data/serializer/json-api"],(function(e,t){Object.defineProperty(e,"__esModule",{value:!0}),Object.defineProperty(e,"default",{enumerable:!0,get:function(){return t.default}})})),define("worldcup/serializers/-rest",["exports","@ember-data/serializer/rest"],(function(e,t){Object.defineProperty(e,"__esModule",{value:!0}),Object.defineProperty(e,"default",{enumerable:!0,get:function(){return t.default}})})),define("worldcup/services/api",["exports","ember-concurrency","ember-concurrency-ts"],(function(e,t,r){var n,o,i
+case 12:e.prev=12,e.t0=e.catch(2),o=[]
+case 15:return this.sweepstakes.setPlayers(o),e.next=18,(0,t.taskFor)(this.api.loadModel).perform()
+case 18:return(0,t.taskFor)(this.api.enqueueRefresh).perform(),e.abrupt("return",this.api.model)
+case 20:case"end":return e.stop()}}),e,this,[[2,12]])})),y=function(){var e=this,t=arguments
+return new Promise((function(r,n){var o=b.apply(e,t)
+function i(e){a(o,r,n,i,u,"next",e)}function u(e){a(o,r,n,i,u,"throw",e)}i(void 0)}))},function(e){return y.apply(this,arguments)})}])&&p(n.prototype,o),i&&p(n,i),g}()).prototype,"api",[n],{configurable:!0,enumerable:!0,writable:!0,initializer:null}),l=h(i.prototype,"sweepstakes",[o],{configurable:!0,enumerable:!0,writable:!0,initializer:null}),i)
+e.default=g})),define("worldcup/serializers/-default",["exports","@ember-data/serializer/json"],(function(e,t){Object.defineProperty(e,"__esModule",{value:!0}),Object.defineProperty(e,"default",{enumerable:!0,get:function(){return t.default}})})),define("worldcup/serializers/-json-api",["exports","@ember-data/serializer/json-api"],(function(e,t){Object.defineProperty(e,"__esModule",{value:!0}),Object.defineProperty(e,"default",{enumerable:!0,get:function(){return t.default}})})),define("worldcup/serializers/-rest",["exports","@ember-data/serializer/rest"],(function(e,t){Object.defineProperty(e,"__esModule",{value:!0}),Object.defineProperty(e,"default",{enumerable:!0,get:function(){return t.default}})})),define("worldcup/services/api",["exports","ember-concurrency","ember-concurrency-ts"],(function(e,t,r){var n,o,i
 function u(e,t,r,n,o,i,u){try{var l=e[i](u),a=l.value}catch(c){return void r(c)}l.done?t(a):Promise.resolve(a).then(n,o)}function l(e,t,r,n){r&&Object.defineProperty(e,t,{enumerable:r.enumerable,configurable:r.configurable,writable:r.writable,value:r.initializer?r.initializer.call(n):void 0})}function a(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function c(e,t){for(var r=0;r<t.length;r++){var n=t[r]
 n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n)}}function f(e,t){return(f=Object.setPrototypeOf||function(e,t){return e.__proto__=t,e})(e,t)}function p(e){var t=function(){if("undefined"==typeof Reflect||!Reflect.construct)return!1
 if(Reflect.construct.sham)return!1
@@ -277,4 +277,4 @@ var t=Ember.HTMLBars.template({id:"0DxwFcfs",block:'[[[10,0],[14,0,"absolute ins
 e.default=t})),define("worldcup/templates/worldcup",["exports"],(function(e){Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
 var t=Ember.HTMLBars.template({id:"bJrwyaC1",block:'[[[8,[39,0],null,[["@standings","@fixtures"],[[30,1,["standings"]],[30,1,["fixtures"]]]],null]],["@model"],false,["world-cup"]]',moduleName:"worldcup/templates/worldcup.hbs",isStrictMode:!1})
 e.default=t})),define("worldcup/transforms/boolean",["exports","@ember-data/serializer/-private"],(function(e,t){Object.defineProperty(e,"__esModule",{value:!0}),Object.defineProperty(e,"default",{enumerable:!0,get:function(){return t.BooleanTransform}})})),define("worldcup/transforms/date",["exports","@ember-data/serializer/-private"],(function(e,t){Object.defineProperty(e,"__esModule",{value:!0}),Object.defineProperty(e,"default",{enumerable:!0,get:function(){return t.DateTransform}})})),define("worldcup/transforms/number",["exports","@ember-data/serializer/-private"],(function(e,t){Object.defineProperty(e,"__esModule",{value:!0}),Object.defineProperty(e,"default",{enumerable:!0,get:function(){return t.NumberTransform}})})),define("worldcup/transforms/string",["exports","@ember-data/serializer/-private"],(function(e,t){Object.defineProperty(e,"__esModule",{value:!0}),Object.defineProperty(e,"default",{enumerable:!0,get:function(){return t.StringTransform}})})),define("worldcup/config/environment",[],(function(){try{var e="worldcup/config/environment",t=document.querySelector('meta[name="'+e+'"]').getAttribute("content"),r={default:JSON.parse(decodeURIComponent(t))}
-return Object.defineProperty(r,"__esModule",{value:!0}),r}catch(n){throw new Error('Could not read config from meta tag with name "'+e+'".')}})),runningTests||require("worldcup/app").default.create({name:"worldcup",version:"0.0.0+97078651"})
+return Object.defineProperty(r,"__esModule",{value:!0}),r}catch(n){throw new Error('Could not read config from meta tag with name "'+e+'".')}})),runningTests||require("worldcup/app").default.create({name:"worldcup",version:"0.0.0+45fbf161"})
