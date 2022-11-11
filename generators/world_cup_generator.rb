@@ -2,8 +2,8 @@ require 'set'
 require 'json'
 
 player_args = ARGV[0]
-seed_arg = ARGV[1]
-filename_arg = ARGV[2]
+seed_arg = ARGV[2]
+filename_arg = ARGV[1]
 
 players = player_args.split(',').map(&:strip).sort
 seed = seed_arg.nil? ? rand(0..10000) : seed_arg.to_i
