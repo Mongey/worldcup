@@ -12,7 +12,7 @@ export default class WorldCup extends Route {
   async model(params: { id: string }) {
     var players: Player[];
     var id = params.id;
-    if (!id) {
+    if (id === undefined) {
       id = ENV.APP.default_group as string;
     }
     try {
