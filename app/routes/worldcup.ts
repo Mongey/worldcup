@@ -13,6 +13,7 @@ export default class WorldCup extends Route {
     var players: Player[];
     var id = params.id;
     if (id === undefined) {
+      console.debug(`using '${ENV.APP.default_group}' as default id`);
       id = ENV.APP.default_group as string;
     }
     try {
