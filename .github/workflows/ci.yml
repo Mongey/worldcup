@@ -14,8 +14,8 @@ jobs:
       - name: Install and Build 🔧
         uses: actions/setup-node@v3
         with:
-          node-version: 14
-      - uses: actions/cache@v2
+          node-version: 18
+      - uses: actions/cache@v3
         with:
           path: '**/node_modules'
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
