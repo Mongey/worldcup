@@ -103,6 +103,7 @@
     "webpack": "^5.65.0"
   },
   "resolutions": {
+    "clean-css": "5.2.2",
     "gift": "^0.10.2"
   },
   "engines": {
@@ -110,5 +111,8 @@
   },
   "ember": {
     "edition": "octane"
+  },
+  "dependencies": {
+    "clean-css": "5.2.4"
   }
 }
