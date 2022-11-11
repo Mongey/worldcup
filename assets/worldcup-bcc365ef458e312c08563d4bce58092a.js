@@ -196,7 +196,7 @@ function g(){var e
 f(this,g)
 for(var t=arguments.length,r=new Array(t),n=0;n<t;n++)r[n]=arguments[n]
 return c(m(e=h.call.apply(h,[this].concat(r))),"api",u,m(e)),c(m(e),"sweepstakes",l,m(e)),e}return n=g,(o=[{key:"model",value:(b=regeneratorRuntime.mark((function e(n){var o,i,u,l
-return regeneratorRuntime.wrap((function(e){for(;;)switch(e.prev=e.next){case 0:return null!==(i=n.id)&&(i=r.default.APP.default_group),e.prev=2,e.next=5,fetch("/players/".concat(i,".json"))
+return regeneratorRuntime.wrap((function(e){for(;;)switch(e.prev=e.next){case 0:return(i=n.id)||(i=r.default.APP.default_group),e.prev=2,e.next=5,fetch("/players/".concat(i,".json"))
 case 5:return u=e.sent,e.next=8,u.json()
 case 8:l=e.sent,o=l.players,e.next=15
 break
@@ -277,4 +277,4 @@ var t=Ember.HTMLBars.template({id:"0DxwFcfs",block:'[[[10,0],[14,0,"absolute ins
 e.default=t})),define("worldcup/templates/worldcup",["exports"],(function(e){Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
 var t=Ember.HTMLBars.template({id:"bJrwyaC1",block:'[[[8,[39,0],null,[["@standings","@fixtures"],[[30,1,["standings"]],[30,1,["fixtures"]]]],null]],["@model"],false,["world-cup"]]',moduleName:"worldcup/templates/worldcup.hbs",isStrictMode:!1})
 e.default=t})),define("worldcup/transforms/boolean",["exports","@ember-data/serializer/-private"],(function(e,t){Object.defineProperty(e,"__esModule",{value:!0}),Object.defineProperty(e,"default",{enumerable:!0,get:function(){return t.BooleanTransform}})})),define("worldcup/transforms/date",["exports","@ember-data/serializer/-private"],(function(e,t){Object.defineProperty(e,"__esModule",{value:!0}),Object.defineProperty(e,"default",{enumerable:!0,get:function(){return t.DateTransform}})})),define("worldcup/transforms/number",["exports","@ember-data/serializer/-private"],(function(e,t){Object.defineProperty(e,"__esModule",{value:!0}),Object.defineProperty(e,"default",{enumerable:!0,get:function(){return t.NumberTransform}})})),define("worldcup/transforms/string",["exports","@ember-data/serializer/-private"],(function(e,t){Object.defineProperty(e,"__esModule",{value:!0}),Object.defineProperty(e,"default",{enumerable:!0,get:function(){return t.StringTransform}})})),define("worldcup/config/environment",[],(function(){try{var e="worldcup/config/environment",t=document.querySelector('meta[name="'+e+'"]').getAttribute("content"),r={default:JSON.parse(decodeURIComponent(t))}
-return Object.defineProperty(r,"__esModule",{value:!0}),r}catch(n){throw new Error('Could not read config from meta tag with name "'+e+'".')}})),runningTests||require("worldcup/app").default.create({name:"worldcup",version:"0.0.0+6404b9a9"})
+return Object.defineProperty(r,"__esModule",{value:!0}),r}catch(n){throw new Error('Could not read config from meta tag with name "'+e+'".')}})),runningTests||require("worldcup/app").default.create({name:"worldcup",version:"0.0.0+1682be9a"})
