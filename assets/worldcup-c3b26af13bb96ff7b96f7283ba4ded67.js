@@ -1,21 +1,22 @@
 "use strict"
-function _typeof(e){return(_typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e})(e)}function _typeof(e){return(_typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e})(e)}function _typeof(e){return(_typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e})(e)}function _typeof(e){return(_typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e})(e)}function _typeof(e){return(_typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e})(e)}function _typeof(e){return(_typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e})(e)}function _typeof(e){return(_typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e})(e)}define("worldcup/adapters/-json-api",["exports","@ember-data/adapter/json-api"],(function(e,t){Object.defineProperty(e,"__esModule",{value:!0}),Object.defineProperty(e,"default",{enumerable:!0,get:function(){return t.default}})})),define("worldcup/app",["exports","ember-resolver","ember-load-initializers","worldcup/config/environment"],(function(e,t,r,n){function o(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function i(e,t){return(i=Object.setPrototypeOf||function(e,t){return e.__proto__=t,e})(e,t)}function u(e){var t=function(){if("undefined"==typeof Reflect||!Reflect.construct)return!1
+function _typeof(e){return(_typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e})(e)}function _typeof(e){return(_typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e})(e)}function _typeof(e){return(_typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e})(e)}function _typeof(e){return(_typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e})(e)}function _typeof(e){return(_typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e})(e)}function _typeof(e){return(_typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e})(e)}function _typeof(e){return(_typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e})(e)}define("worldcup/adapters/-json-api",["exports","@ember-data/adapter/json-api"],(function(e,t){Object.defineProperty(e,"__esModule",{value:!0}),Object.defineProperty(e,"default",{enumerable:!0,get:function(){return t.default}})})),define("worldcup/app",["exports","ember-resolver","ember-load-initializers","worldcup/config/environment"],(function(e,t,r,n){function o(e,t){for(var r=0;r<t.length;r++){var n=t[r]
+n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n)}}function i(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function u(e,t){return(u=Object.setPrototypeOf||function(e,t){return e.__proto__=t,e})(e,t)}function l(e){var t=function(){if("undefined"==typeof Reflect||!Reflect.construct)return!1
 if(Reflect.construct.sham)return!1
 if("function"==typeof Proxy)return!0
 try{return Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){}))),!0}catch(e){return!1}}()
-return function(){var r,n=c(e)
-if(t){var o=c(this).constructor
+return function(){var r,n=f(e)
+if(t){var o=f(this).constructor
 r=Reflect.construct(n,arguments,o)}else r=n.apply(this,arguments)
-return l(this,r)}}function l(e,t){return!t||"object"!==_typeof(t)&&"function"!=typeof t?a(e):t}function a(e){if(void 0===e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called")
-return e}function c(e){return(c=Object.setPrototypeOf?Object.getPrototypeOf:function(e){return e.__proto__||Object.getPrototypeOf(e)})(e)}function f(e,t,r){return t in e?Object.defineProperty(e,t,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[t]=r,e}Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
-var p=function(e){(function(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function")
-e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,writable:!0,configurable:!0}}),t&&i(e,t)})(l,Ember.Application)
-var r=u(l)
-function l(){var e
-o(this,l)
-for(var i=arguments.length,u=new Array(i),c=0;c<i;c++)u[c]=arguments[c]
-return f(a(e=r.call.apply(r,[this].concat(u))),"modulePrefix",n.default.modulePrefix),f(a(e),"podModulePrefix",n.default.podModulePrefix),f(a(e),"Resolver",t.default),e}return l}()
-e.default=p,(0,r.default)(p,n.default.modulePrefix)})),define("worldcup/component-managers/glimmer",["exports","@glimmer/component/-private/ember-component-manager"],(function(e,t){Object.defineProperty(e,"__esModule",{value:!0}),Object.defineProperty(e,"default",{enumerable:!0,get:function(){return t.default}})})),define("worldcup/components/avatar",["exports","@glimmer/component"],(function(e,t){function r(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function n(e,t){for(var r=0;r<t.length;r++){var n=t[r]
+return a(this,r)}}function a(e,t){return!t||"object"!==_typeof(t)&&"function"!=typeof t?c(e):t}function c(e){if(void 0===e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called")
+return e}function f(e){return(f=Object.setPrototypeOf?Object.getPrototypeOf:function(e){return e.__proto__||Object.getPrototypeOf(e)})(e)}function p(e,t,r){return t in e?Object.defineProperty(e,t,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[t]=r,e}Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
+var s=function(e){(function(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function")
+e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,writable:!0,configurable:!0}}),t&&u(e,t)})(d,Ember.Application)
+var r,a,f,s=l(d)
+function d(){var e
+i(this,d)
+for(var r=arguments.length,o=new Array(r),u=0;u<r;u++)o[u]=arguments[u]
+return p(c(e=s.call.apply(s,[this].concat(o))),"modulePrefix",n.default.modulePrefix),p(c(e),"podModulePrefix",n.default.podModulePrefix),p(c(e),"Resolver",t.default),e}return r=d,a&&o(r.prototype,a),f&&o(r,f),r}()
+e.default=s,(0,r.default)(s,n.default.modulePrefix)})),define("worldcup/component-managers/glimmer",["exports","@glimmer/component/-private/ember-component-manager"],(function(e,t){Object.defineProperty(e,"__esModule",{value:!0}),Object.defineProperty(e,"default",{enumerable:!0,get:function(){return t.default}})})),define("worldcup/components/avatar",["exports","@glimmer/component"],(function(e,t){function r(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function n(e,t){for(var r=0;r<t.length;r++){var n=t[r]
 n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n)}}function o(e,t){return(o=Object.setPrototypeOf||function(e,t){return e.__proto__=t,e})(e,t)}function i(e){var t=function(){if("undefined"==typeof Reflect||!Reflect.construct)return!1
 if(Reflect.construct.sham)return!1
 if("function"==typeof Proxy)return!0
@@ -29,20 +30,21 @@ var a=Ember.HTMLBars.template({id:"/isHJRSj",block:'[[[11,"img"],[16,"src",[29,[
 e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,writable:!0,configurable:!0}}),t&&o(e,t)})(c,e)
 var t,u,l,a=i(c)
 function c(){return r(this,c),a.apply(this,arguments)}return t=c,(u=[{key:"image",get:function(){return this.args.url.includes("http")?this.args.url:"assets/".concat(this.args.url)}}])&&n(t.prototype,u),l&&n(t,l),c}(t.default)
-e.default=c,Ember._setComponentTemplate(a,c)})),define("worldcup/components/world-cup",["exports","@glimmer/component"],(function(e,t){function r(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function n(e,t){return(n=Object.setPrototypeOf||function(e,t){return e.__proto__=t,e})(e,t)}function o(e){var t=function(){if("undefined"==typeof Reflect||!Reflect.construct)return!1
+e.default=c,Ember._setComponentTemplate(a,c)})),define("worldcup/components/world-cup",["exports","@glimmer/component"],(function(e,t){function r(e,t){for(var r=0;r<t.length;r++){var n=t[r]
+n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n)}}function n(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function o(e,t){return(o=Object.setPrototypeOf||function(e,t){return e.__proto__=t,e})(e,t)}function i(e){var t=function(){if("undefined"==typeof Reflect||!Reflect.construct)return!1
 if(Reflect.construct.sham)return!1
 if("function"==typeof Proxy)return!0
 try{return Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){}))),!0}catch(e){return!1}}()
-return function(){var r,n=u(e)
-if(t){var o=u(this).constructor
+return function(){var r,n=l(e)
+if(t){var o=l(this).constructor
 r=Reflect.construct(n,arguments,o)}else r=n.apply(this,arguments)
-return i(this,r)}}function i(e,t){return!t||"object"!==_typeof(t)&&"function"!=typeof t?function(e){if(void 0===e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called")
-return e}(e):t}function u(e){return(u=Object.setPrototypeOf?Object.getPrototypeOf:function(e){return e.__proto__||Object.getPrototypeOf(e)})(e)}Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
-var l=Ember.HTMLBars.template({id:"N6mU/VRg",block:'[[[10,0],[14,0,"flex flex-col space-y-2 pt-4"],[12],[1,"\\n  "],[8,[39,0],null,[["@standings"],[[30,1]]],null],[1,"\\n\\n  "],[8,[39,1],null,[["@fixtures"],[[30,2]]],null],[1,"\\n"],[13],[1,"\\n"]],["@standings","@fixtures"],false,["world-cup/standings","world-cup/fixture-list"]]',moduleName:"worldcup/components/world-cup.hbs",isStrictMode:!1}),a=function(e){(function(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function")
-e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,writable:!0,configurable:!0}}),t&&n(e,t)})(i,e)
-var t=o(i)
-function i(){return r(this,i),t.apply(this,arguments)}return i}(t.default)
-e.default=a,Ember._setComponentTemplate(l,a)})),define("worldcup/components/world-cup/fixture-list",["exports","@glimmer/component"],(function(e,t){var r,n,o,i,u,l
+return u(this,r)}}function u(e,t){return!t||"object"!==_typeof(t)&&"function"!=typeof t?function(e){if(void 0===e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called")
+return e}(e):t}function l(e){return(l=Object.setPrototypeOf?Object.getPrototypeOf:function(e){return e.__proto__||Object.getPrototypeOf(e)})(e)}Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
+var a=Ember.HTMLBars.template({id:"N6mU/VRg",block:'[[[10,0],[14,0,"flex flex-col space-y-2 pt-4"],[12],[1,"\\n  "],[8,[39,0],null,[["@standings"],[[30,1]]],null],[1,"\\n\\n  "],[8,[39,1],null,[["@fixtures"],[[30,2]]],null],[1,"\\n"],[13],[1,"\\n"]],["@standings","@fixtures"],false,["world-cup/standings","world-cup/fixture-list"]]',moduleName:"worldcup/components/world-cup.hbs",isStrictMode:!1}),c=function(e){(function(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function")
+e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,writable:!0,configurable:!0}}),t&&o(e,t)})(c,e)
+var t,u,l,a=i(c)
+function c(){return n(this,c),a.apply(this,arguments)}return t=c,u&&r(t.prototype,u),l&&r(t,l),t}(t.default)
+e.default=c,Ember._setComponentTemplate(a,c)})),define("worldcup/components/world-cup/fixture-list",["exports","@glimmer/component"],(function(e,t){var r,n,o,i,u,l
 function a(e,t,r,n){r&&Object.defineProperty(e,t,{enumerable:r.enumerable,configurable:r.configurable,writable:r.writable,value:r.initializer?r.initializer.call(n):void 0})}function c(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function f(e,t){for(var r=0;r<t.length;r++){var n=t[r]
 n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n)}}function p(e,t){return(p=Object.setPrototypeOf||function(e,t){return e.__proto__=t,e})(e,t)}function s(e){var t=function(){if("undefined"==typeof Reflect||!Reflect.construct)return!1
 if(Reflect.construct.sham)return!1
@@ -136,7 +138,7 @@ Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0,r.default.APP&
 var i={name:"App Version",initialize:(0,t.default)(n,o)}
 e.default=i})),define("worldcup/initializers/container-debug-adapter",["exports","ember-resolver/resolvers/classic/container-debug-adapter"],(function(e,t){Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
 var r={name:"container-debug-adapter",initialize:function(){var e=arguments[1]||arguments[0]
-e.register("container-debug-adapter:main",t.default),e.inject("container-debug-adapter:main","namespace","application:main")}}
+e.register("container-debug-adapter:main",t.default)}}
 e.default=r})),define("worldcup/initializers/ember-data-data-adapter",["exports","@ember-data/debug/setup"],(function(e,t){Object.defineProperty(e,"__esModule",{value:!0}),Object.defineProperty(e,"default",{enumerable:!0,get:function(){return t.default}})})),define("worldcup/initializers/ember-data",["exports","ember-data","ember-data/setup-container"],(function(e,t,r){Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
 var n={name:"ember-data",initialize:r.default}
 e.default=n})),define("worldcup/initializers/export-application-global",["exports","worldcup/config/environment"],(function(e,t){function r(){var e=arguments[1]||arguments[0]
@@ -148,36 +150,38 @@ r=self}var n,o=t.default.exportApplicationGlobal
 n="string"==typeof o?o:Ember.String.classify(t.default.modulePrefix),r[n]||(r[n]=e,e.reopen({willDestroy:function(){this._super.apply(this,arguments),delete r[n]}}))}}Object.defineProperty(e,"__esModule",{value:!0}),e.initialize=r,e.default=void 0
 var n={name:"export-application-global",initialize:r}
 e.default=n})),define("worldcup/instance-initializers/ember-data",["exports"],(function(e){Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
-e.default={name:"ember-data",initialize:function(){}}})),define("worldcup/router",["exports","worldcup/config/environment"],(function(e,t){function r(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function n(e,t){return(n=Object.setPrototypeOf||function(e,t){return e.__proto__=t,e})(e,t)}function o(e){var t=function(){if("undefined"==typeof Reflect||!Reflect.construct)return!1
+e.default={name:"ember-data",initialize:function(){}}})),define("worldcup/router",["exports","worldcup/config/environment"],(function(e,t){function r(e,t){for(var r=0;r<t.length;r++){var n=t[r]
+n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n)}}function n(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function o(e,t){return(o=Object.setPrototypeOf||function(e,t){return e.__proto__=t,e})(e,t)}function i(e){var t=function(){if("undefined"==typeof Reflect||!Reflect.construct)return!1
 if(Reflect.construct.sham)return!1
 if("function"==typeof Proxy)return!0
 try{return Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){}))),!0}catch(e){return!1}}()
-return function(){var r,n=l(e)
-if(t){var o=l(this).constructor
+return function(){var r,n=a(e)
+if(t){var o=a(this).constructor
 r=Reflect.construct(n,arguments,o)}else r=n.apply(this,arguments)
-return i(this,r)}}function i(e,t){return!t||"object"!==_typeof(t)&&"function"!=typeof t?u(e):t}function u(e){if(void 0===e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called")
-return e}function l(e){return(l=Object.setPrototypeOf?Object.getPrototypeOf:function(e){return e.__proto__||Object.getPrototypeOf(e)})(e)}function a(e,t,r){return t in e?Object.defineProperty(e,t,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[t]=r,e}Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
-var c=function(e){(function(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function")
-e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,writable:!0,configurable:!0}}),t&&n(e,t)})(l,Ember.Router)
-var i=o(l)
-function l(){var e
-r(this,l)
-for(var n=arguments.length,o=new Array(n),c=0;c<n;c++)o[c]=arguments[c]
-return a(u(e=i.call.apply(i,[this].concat(o))),"location",t.default.locationType),a(u(e),"rootURL",t.default.rootURL),e}return l}()
-e.default=c,c.map((function(){this.route("worldcup",{path:":id"})}))})),define("worldcup/routes/application",["exports"],(function(e){function t(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function r(e,t){return(r=Object.setPrototypeOf||function(e,t){return e.__proto__=t,e})(e,t)}function n(e){var t=function(){if("undefined"==typeof Reflect||!Reflect.construct)return!1
+return u(this,r)}}function u(e,t){return!t||"object"!==_typeof(t)&&"function"!=typeof t?l(e):t}function l(e){if(void 0===e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called")
+return e}function a(e){return(a=Object.setPrototypeOf?Object.getPrototypeOf:function(e){return e.__proto__||Object.getPrototypeOf(e)})(e)}function c(e,t,r){return t in e?Object.defineProperty(e,t,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[t]=r,e}Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
+var f=function(e){(function(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function")
+e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,writable:!0,configurable:!0}}),t&&o(e,t)})(s,Ember.Router)
+var u,a,f,p=i(s)
+function s(){var e
+n(this,s)
+for(var r=arguments.length,o=new Array(r),i=0;i<r;i++)o[i]=arguments[i]
+return c(l(e=p.call.apply(p,[this].concat(o))),"location",t.default.locationType),c(l(e),"rootURL",t.default.rootURL),e}return u=s,a&&r(u.prototype,a),f&&r(u,f),u}()
+e.default=f,f.map((function(){this.route("worldcup",{path:"/"}),this.route("worldcup",{path:"/:id"})}))})),define("worldcup/routes/application",["exports"],(function(e){function t(e,t){for(var r=0;r<t.length;r++){var n=t[r]
+n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n)}}function r(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function n(e,t){return(n=Object.setPrototypeOf||function(e,t){return e.__proto__=t,e})(e,t)}function o(e){var t=function(){if("undefined"==typeof Reflect||!Reflect.construct)return!1
 if(Reflect.construct.sham)return!1
 if("function"==typeof Proxy)return!0
 try{return Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){}))),!0}catch(e){return!1}}()
-return function(){var r,n=i(e)
-if(t){var u=i(this).constructor
-r=Reflect.construct(n,arguments,u)}else r=n.apply(this,arguments)
-return o(this,r)}}function o(e,t){return!t||"object"!==_typeof(t)&&"function"!=typeof t?function(e){if(void 0===e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called")
-return e}(e):t}function i(e){return(i=Object.setPrototypeOf?Object.getPrototypeOf:function(e){return e.__proto__||Object.getPrototypeOf(e)})(e)}Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
-var u=function(e){(function(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function")
-e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,writable:!0,configurable:!0}}),t&&r(e,t)})(i,Ember.Route)
-var o=n(i)
-function i(){return t(this,i),o.apply(this,arguments)}return i}()
-e.default=u})),define("worldcup/routes/worldcup",["exports","ember-concurrency-ts","worldcup/config/environment"],(function(e,t,r){var n,o,i,u,l
+return function(){var r,n=u(e)
+if(t){var o=u(this).constructor
+r=Reflect.construct(n,arguments,o)}else r=n.apply(this,arguments)
+return i(this,r)}}function i(e,t){return!t||"object"!==_typeof(t)&&"function"!=typeof t?function(e){if(void 0===e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called")
+return e}(e):t}function u(e){return(u=Object.setPrototypeOf?Object.getPrototypeOf:function(e){return e.__proto__||Object.getPrototypeOf(e)})(e)}Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
+var l=function(e){(function(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function")
+e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,writable:!0,configurable:!0}}),t&&n(e,t)})(c,Ember.Route)
+var i,u,l,a=o(c)
+function c(){return r(this,c),a.apply(this,arguments)}return i=c,u&&t(i.prototype,u),l&&t(i,l),i}()
+e.default=l})),define("worldcup/routes/worldcup",["exports","ember-concurrency-ts","worldcup/config/environment"],(function(e,t,r){var n,o,i,u,l
 function a(e,t,r,n,o,i,u){try{var l=e[i](u),a=l.value}catch(c){return void r(c)}l.done?t(a):Promise.resolve(a).then(n,o)}function c(e,t,r,n){r&&Object.defineProperty(e,t,{enumerable:r.enumerable,configurable:r.configurable,writable:r.writable,value:r.initializer?r.initializer.call(n):void 0})}function f(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function p(e,t){for(var r=0;r<t.length;r++){var n=t[r]
 n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n)}}function s(e,t){return(s=Object.setPrototypeOf||function(e,t){return e.__proto__=t,e})(e,t)}function d(e){var t=function(){if("undefined"==typeof Reflect||!Reflect.construct)return!1
 if(Reflect.construct.sham)return!1
@@ -196,7 +200,7 @@ function g(){var e
 f(this,g)
 for(var t=arguments.length,r=new Array(t),n=0;n<t;n++)r[n]=arguments[n]
 return c(m(e=h.call.apply(h,[this].concat(r))),"api",u,m(e)),c(m(e),"sweepstakes",l,m(e)),e}return n=g,(o=[{key:"model",value:(b=regeneratorRuntime.mark((function e(n){var o,i,u,l
-return regeneratorRuntime.wrap((function(e){for(;;)switch(e.prev=e.next){case 0:return(i=n.id)||(i=r.default.APP.default_group),e.prev=2,e.next=5,fetch("/players/".concat(i,".json"))
+return regeneratorRuntime.wrap((function(e){for(;;)switch(e.prev=e.next){case 0:return void 0===(i=n.id)&&(i=r.default.APP.default_group),e.prev=2,e.next=5,fetch("/players/".concat(i,".json"))
 case 5:return u=e.sent,e.next=8,u.json()
 case 8:l=e.sent,o=l.players,e.next=15
 break
@@ -277,4 +281,4 @@ var t=Ember.HTMLBars.template({id:"0DxwFcfs",block:'[[[10,0],[14,0,"absolute ins
 e.default=t})),define("worldcup/templates/worldcup",["exports"],(function(e){Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
 var t=Ember.HTMLBars.template({id:"bJrwyaC1",block:'[[[8,[39,0],null,[["@standings","@fixtures"],[[30,1,["standings"]],[30,1,["fixtures"]]]],null]],["@model"],false,["world-cup"]]',moduleName:"worldcup/templates/worldcup.hbs",isStrictMode:!1})
 e.default=t})),define("worldcup/transforms/boolean",["exports","@ember-data/serializer/-private"],(function(e,t){Object.defineProperty(e,"__esModule",{value:!0}),Object.defineProperty(e,"default",{enumerable:!0,get:function(){return t.BooleanTransform}})})),define("worldcup/transforms/date",["exports","@ember-data/serializer/-private"],(function(e,t){Object.defineProperty(e,"__esModule",{value:!0}),Object.defineProperty(e,"default",{enumerable:!0,get:function(){return t.DateTransform}})})),define("worldcup/transforms/number",["exports","@ember-data/serializer/-private"],(function(e,t){Object.defineProperty(e,"__esModule",{value:!0}),Object.defineProperty(e,"default",{enumerable:!0,get:function(){return t.NumberTransform}})})),define("worldcup/transforms/string",["exports","@ember-data/serializer/-private"],(function(e,t){Object.defineProperty(e,"__esModule",{value:!0}),Object.defineProperty(e,"default",{enumerable:!0,get:function(){return t.StringTransform}})})),define("worldcup/config/environment",[],(function(){try{var e="worldcup/config/environment",t=document.querySelector('meta[name="'+e+'"]').getAttribute("content"),r={default:JSON.parse(decodeURIComponent(t))}
-return Object.defineProperty(r,"__esModule",{value:!0}),r}catch(n){throw new Error('Could not read config from meta tag with name "'+e+'".')}})),runningTests||require("worldcup/app").default.create({name:"worldcup",version:"0.0.0+1682be9a"})
+return Object.defineProperty(r,"__esModule",{value:!0}),r}catch(n){throw new Error('Could not read config from meta tag with name "'+e+'".')}})),runningTests||require("worldcup/app").default.create({name:"worldcup",version:"0.0.0+55621d67"})
