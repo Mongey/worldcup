@@ -4,7 +4,7 @@ import { TaskGenerator, task, dropTask, timeout } from 'ember-concurrency';
 import { taskFor } from 'ember-concurrency-ts';
 
 const standingsEndpoint = `https://standings.uefa.com/v1/standings?groupIds=2007941,2007942,2007943,2007944,2007946,2007945,2007947,2007948`;
-const fixturesEnpoint = `https://match.uefa.com/v5/matches?competitionId=17&utcOffset=1&order=ASC&offset=0&fromDate=2022-11-20&toDate=2022-12-18&limit=100`;
+const fixturesEndpoint = `https://match.uefa.com/v5/matches?competitionId=17&utcOffset=1&order=ASC&offset=0&fromDate=2022-11-20&toDate=2022-12-18&limit=100`;
 const apiKey = `ceeee1a5bb209502c6c438abd8f30aef179ce669bb9288f2d1cf2fa276de03f4`;
 const liveScoreEndpoint = `https://api.fifa.com/api/v3/live/football/range?from=2022-11-20T00:00:00Z&to=2023-07-20T00:00:00Z&IdSeason=255711&language=en`;
 const fifaStandingsEndpoint = `https://api.fifa.com/api/v3/calendar/17/255711/285063/standing?language=en`;
@@ -61,7 +61,8 @@ export interface TeamWireFormat {
   countryCode: CountryCode;
   isPlaceholder: boolean;
 }
-export interface FixtureWireformat {
+
+export interface FixtureWireFormat {
   homeTeam: TeamWireFormat;
   awayTeam: TeamWireFormat;
   kickOffTime: { dateTime: string };
@@ -127,7 +128,7 @@ export interface FifaStandingWireFormat {
 export default class Api extends Service {
   @tracked model!: {
     standings: Array<GroupStandingWireFormat>;
-    fixtures: Array<FixtureWireformat>;
+    fixtures: Array<FixtureWireFormat>;
     liveScores: Array<MatchResult>;
   };
 
@@ -145,7 +146,7 @@ export default class Api extends Service {
     };
     this.model = {
       standings: [],
-      fixtures: result[1] as Array<FixtureWireformat>,
+      fixtures: result[1] as Array<FixtureWireFormat>,
       liveScores: result[2].Results as Array<MatchResult>,
     };
 
@@ -230,8 +231,8 @@ export default class Api extends Service {
   }
 
   @task
-  *loadFixtures(): TaskGenerator<Array<FixtureWireformat>> {
-    return yield this.fetch(fixturesEnpoint);
+  *loadFixtures(): TaskGenerator<Array<FixtureWireFormat>> {
+    return yield this.fetch(fixturesEndpoint);
   }
 
   @task

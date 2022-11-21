@@ -1,8 +1,8 @@
 import Component from '@glimmer/component';
-import { FixtureWireformat } from 'worldcup/services/api';
+import { FixtureWireFormat } from 'worldcup/services/api';
 
 interface Args {
-  fixture: FixtureWireformat;
+  fixture: FixtureWireFormat;
 }
 
 export default class WorldCupFixtureListFixtureComponent extends Component<Args> {

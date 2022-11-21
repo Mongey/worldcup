@@ -1,11 +1,11 @@
-import Api, { FixtureWireformat } from '../../services/api';
+import Api, { FixtureWireFormat } from '../../services/api';
 import Component from '@glimmer/component';
 import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 
 interface Args {
-  fixtures: Array<FixtureWireformat>;
+  fixtures: Array<FixtureWireFormat>;
 }
 export default class WorldCupFixtureList extends Component<Args> {
   @service declare api: Api;
