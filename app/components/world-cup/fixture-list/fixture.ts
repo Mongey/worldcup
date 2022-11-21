@@ -11,10 +11,24 @@ export default class WorldCupFixtureListFixtureComponent extends Component<Args>
   }
 
   get isUpcoming(): boolean {
-    return this.args.fixture.status === 'UPCOMING';
+    return this.kickOffTime > new Date();
+  }
+
+  get kickOffTime(): Date {
+    return new Date(this.args.fixture.kickOffTime.dateTime);
+  }
+
+  get matchShouldBeFinishedByTime(): Date {
+    let expectedDurationMinutes = 90 + 15 + 10;
+    return new Date(
+      this.kickOffTime.getTime() + expectedDurationMinutes * 60 * 1000
+    );
   }
 
   get isFinished(): boolean {
-    return this.args.fixture.status === 'FINISHED';
+    return (
+      this.args.fixture.status === 'FINISHED' ||
+      new Date() > this.matchShouldBeFinishedByTime
+    );
   }
 }
