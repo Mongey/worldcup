@@ -22,6 +22,7 @@ module.exports = {
         worldcup: '#0184A4',
         teal: '#159990',
         cream: '#f1f0d8',
+        euros: '#1F3BD3',
       },
     },
     screens: {
