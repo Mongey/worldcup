@@ -1,58 +1,20 @@
 import Service from '@ember/service';
 import { tracked } from '@glimmer/tracking';
-import { TaskGenerator, task, dropTask, timeout } from 'ember-concurrency';
+import { TaskGenerator, dropTask, task, timeout } from 'ember-concurrency';
 import { taskFor } from 'ember-concurrency-ts';
 
-const standingsEndpoint = `https://standings.uefa.com/v1/standings?groupIds=2007941,2007942,2007943,2007944,2007946,2007945,2007947,2007948`;
+const standingsEndpoint = `https://standings.uefa.com/v1/standings?competitionId=3&phase=TOURNAMENT&seasonYear=2024`;
 const apiKey = `ceeee1a5bb209502c6c438abd8f30aef179ce669bb9288f2d1cf2fa276de03f4`;
 const liveScoreEndpoint = `https://api.fifa.com/api/v3/live/football/range?from=2022-12-01T00:00:00Z&to=2022-12-20T00:00:00Z&IdSeason=255711&IdCompetition=17`;
 const fifaStandingsEndpoint = `https://api.fifa.com/api/v3/calendar/17/255711/285063/standing?language=en`;
+const uefaLiveScoreEndpoint = `https://match.uefa.com/v5/matches?competitionId=3&limit=30&offset=0&order=ASC&phase=TOURNAMENT&seasonYear=2024`;
 
-export type CountryCode =
-  | 'ARG'
-  | 'BRA'
-  | 'CRO'
-  | 'ENG'
-  | 'GER'
-  | 'ITA'
-  | 'MAR'
-  | 'POL'
-  | 'SCO'
-  | 'SVK'
-  | 'UKR'
-  | 'AUS'
-  | 'CAN'
-  | 'CZE'
-  | 'ESP'
-  | 'GHA'
-  | 'JPN'
-  | 'MEX'
-  | 'POR'
-  | 'SEN'
-  | 'SWE'
-  | 'URU'
-  | 'AUT'
-  | 'CMR'
-  | 'DEN'
-  | 'FIN'
-  | 'HUN'
-  | 'KOR'
-  | 'MKD'
-  | 'QAT'
-  | 'SRB'
-  | 'TUN'
-  | 'USA'
-  | 'BEL'
-  | 'CRC'
-  | 'ECU'
-  | 'FRA'
-  | 'IRN'
-  | 'KSA'
-  | 'NED'
-  | 'RUS'
-  | 'SUI'
-  | 'TUR'
-  | 'WAL';
+enum competitionType {
+  Fifa,
+  Uefa,
+}
+
+export type CountryCode = string;
 
 export interface TeamWireFormat {
   internationalName: string;
@@ -127,6 +89,84 @@ export interface FifaStandingWireFormat {
   GoalsDiference: number;
   IdGroup: string;
 }
+const comp: competitionType = competitionType.Uefa;
+
+function fifaFixtureToStatus(fifaFixture: MatchResult) {
+  if (fifaFixture.Winner || fifaFixture.Period === 10) {
+    return 'FINISHED';
+  } else if (fifaFixture.MatchStatus === 3) {
+    return 'LIVE';
+  } else {
+    return 'UPCOMING';
+  }
+}
+
+function fifaToUefaPhaseName(phaseNumber: number) {
+  switch (phaseNumber) {
+    case 3:
+      return 'First half';
+    case 4:
+      return 'Half time';
+    case 5:
+      return 'Second half';
+    default:
+      return 'In progress';
+  }
+}
+function parseUefaFixture(fixture: any): FixtureWireFormat {
+  return fixture as FixtureWireFormat;
+}
+
+function parseFifaFixture(fifaFixture: any): FixtureWireFormat {
+  let fixture: FixtureWireFormat = {
+    homeTeam: {
+      internationalName: fifaFixture.HomeTeam.ShortClubName,
+      associationLogoUrl: '',
+      countryCode: fifaFixture.HomeTeam.IdCountry as CountryCode,
+      isPlaceholder: false,
+    },
+    awayTeam: {
+      internationalName: fifaFixture.AwayTeam.ShortClubName,
+      associationLogoUrl: '',
+      countryCode: fifaFixture.AwayTeam.IdCountry as CountryCode,
+      isPlaceholder: false,
+    },
+    kickOffTime: { dateTime: fifaFixture.Date },
+    group: {
+      metaData: {
+        groupName:
+          fifaFixture.GroupName[0]?.Description ||
+          fifaFixture.StageName[0]?.Description,
+      },
+    },
+    status: fifaFixtureToStatus(fifaFixture),
+  };
+
+  if (fixture.status === 'LIVE') {
+    fixture.minute = { normal: fifaFixture.MatchTime };
+    fixture.translations = {
+      phaseName: { EN: fifaToUefaPhaseName(fifaFixture.Period) },
+    };
+    fixture.score = {
+      total: {
+        away: fifaFixture.AwayTeam.Score,
+        home: fifaFixture.HomeTeam.Score,
+      },
+    };
+  }
+
+  if (fixture.status === 'FINISHED') {
+    fixture.score = {
+      total: {
+        away: fifaFixture.AwayTeam.Score,
+        home: fifaFixture.HomeTeam.Score,
+      },
+    };
+  }
+
+  return fixture;
+}
+
 export default class Api extends Service {
   @tracked model!: {
     standings: Array<GroupStandingWireFormat>;
@@ -136,96 +176,83 @@ export default class Api extends Service {
 
   @dropTask
   *loadModel(): TaskGenerator<void> {
+    let standingsFn =
+      comp === competitionType.Uefa
+        ? this.loadStandings
+        : this.loadFifaStandings;
+    let liveScoresFn =
+      comp === competitionType.Uefa ? this.uefaLiveScores : this.liveScores;
+
     let result = yield Promise.all([
-      taskFor(this.loadFifaStandings).perform(),
-      taskFor(this.liveScores).perform(),
+      taskFor(standingsFn).perform(),
+      taskFor(liveScoresFn).perform(),
     ]);
     this.model = {
       standings: [],
       fixtures: [],
       liveScores: [],
     };
+    let liveScores: Array<MatchResult>;
+
+    switch (comp) {
+      case competitionType.Uefa:
+        liveScores = result[1];
+        break;
+      case competitionType.Fifa:
+        liveScores = result[1].Results as Array<MatchResult>;
+        break;
+    }
     this.model = {
       standings: [],
       fixtures: result[0] as Array<FixtureWireFormat>,
-      liveScores: result[1].Results as Array<MatchResult>,
+      liveScores: liveScores,
     };
 
-    let fixtures = this.model.liveScores.map((fifaFixture) => {
-      let fixture: FixtureWireFormat = {
-        homeTeam: {
-          internationalName: fifaFixture.HomeTeam.ShortClubName,
-          associationLogoUrl: '',
-          countryCode: fifaFixture.HomeTeam.IdCountry as CountryCode,
-          isPlaceholder: false,
-        },
-        awayTeam: {
-          internationalName: fifaFixture.AwayTeam.ShortClubName,
-          associationLogoUrl: '',
-          countryCode: fifaFixture.AwayTeam.IdCountry as CountryCode,
-          isPlaceholder: false,
-        },
-        kickOffTime: { dateTime: fifaFixture.Date },
-        group: {
-          metaData: {
-            groupName:
-              fifaFixture.GroupName[0]?.Description ||
-              fifaFixture.StageName[0]?.Description,
-          },
-        },
-        status: this.fifaFixtureToStatus(fifaFixture),
-      };
+    let standings: FifaStandingWireFormat[] = [];
 
-      if (fixture.status === 'LIVE') {
-        fixture.minute = { normal: fifaFixture.MatchTime };
-        fixture.translations = {
-          phaseName: { EN: this.fifaToUefaPhaseName(fifaFixture.Period) },
-        };
-        fixture.score = {
-          total: {
-            away: fifaFixture.AwayTeam.Score,
-            home: fifaFixture.HomeTeam.Score,
-          },
-        };
+    let fixtures: FixtureWireFormat[] = this.model.liveScores.map((fixture) => {
+      switch (comp) {
+        case competitionType.Uefa:
+          return parseUefaFixture(fixture);
+        case competitionType.Fifa:
+          return parseFifaFixture(fixture);
       }
-
-      if (fixture.status === 'FINISHED') {
-        fixture.score = {
-          total: {
-            away: fifaFixture.AwayTeam.Score,
-            home: fifaFixture.HomeTeam.Score,
-          },
-        };
-      }
-
-      return fixture;
     });
 
-    let fifaStandings = result[0].Results as Array<FifaStandingWireFormat>;
+    switch (comp) {
+      case competitionType.Uefa:
+        standings = result[1];
+        break;
+      case competitionType.Fifa:
+        let fifaStandings = result[1].Results as Array<FifaStandingWireFormat>;
+        standings = fifaStandings;
+        break;
+    }
 
     let liveFixtures = this.model.liveScores.filter(
       (fixture) => fixture.MatchStatus === 3
     );
+    console.log(fixtures);
 
-    let mappedStandings = fifaStandings.map((standing) => {
+    let mappedStandings = standings.map((standing) => {
       return {
-        drawn: standing.Drawn,
-        goalDifference: standing.GoalsDiference,
-        goalsAgainst: standing.Against,
-        goalsFor: standing.For,
+        drawn: standing?.Drawn,
+        goalDifference: standing?.GoalsDiference,
+        goalsAgainst: standing?.Against,
+        goalsFor: standing?.For,
         isLive: liveFixtures.any(
           (fixture) =>
             fixture.AwayTeam.IdCountry === standing.Team.IdCountry ||
             fixture.HomeTeam.IdCountry === standing.Team.IdCountry
         ),
-        lost: standing.Lost,
-        played: standing.Played,
-        points: standing.Points,
-        won: standing.Won,
+        lost: standing?.Lost,
+        played: standing?.Played,
+        points: standing?.Points,
+        won: standing?.Won,
         team: {
-          internationalName: standing.Team.ShortClubName,
+          internationalName: standing?.Team?.ShortClubName,
           associationLogoUrl: '',
-          countryCode: standing.Team.IdCountry,
+          countryCode: standing?.Team?.IdCountry,
           isPlaceholder: false,
         },
       };
@@ -236,29 +263,6 @@ export default class Api extends Service {
     ] as GroupStandingWireFormat[];
 
     this.model.fixtures = fixtures;
-  }
-
-  private fifaFixtureToStatus(fifaFixture: MatchResult) {
-    if (fifaFixture.Winner || fifaFixture.Period === 10) {
-      return 'FINISHED';
-    } else if (fifaFixture.MatchStatus === 3) {
-      return 'LIVE';
-    } else {
-      return 'UPCOMING';
-    }
-  }
-
-  private fifaToUefaPhaseName(phaseNumber: number) {
-    switch (phaseNumber) {
-      case 3:
-        return 'First half';
-      case 4:
-        return 'Half time';
-      case 5:
-        return 'Second half';
-      default:
-        return 'In progress';
-    }
   }
 
   @task
@@ -278,6 +282,10 @@ export default class Api extends Service {
     return yield this.fetch(fifaStandingsEndpoint);
   }
 
+  @task
+  *uefaLiveScores(): TaskGenerator<any> {
+    return yield this.fetch(uefaLiveScoreEndpoint);
+  }
   @task
   *liveScores(): TaskGenerator<any> {
     return yield this.fetch(liveScoreEndpoint);
