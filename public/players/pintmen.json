@@ -1,6 +1,7 @@
 {
   "players": [
     {
+<<<<<<< HEAD
       "name": "Eoin",
       "teams": [
         "GER",
@@ -9,6 +10,41 @@
         "QAT"
       ],
       "image": "college/eoin.jpg"
+=======
+      "name": "Mark",
+      "teams": ["POR", "POL", "SCO"],
+      "image": "/pintmen/mark.jpg"
+    },
+    {
+      "name": "Marty",
+      "teams": ["GER", "DEN", "ALB"],
+      "image": "/pintmen/martin.jpg"
+    },
+    {
+      "name": "Sean",
+      "teams": ["BEL", "CRO", "HUN"],
+      "image": "/pintmen/sean.jpg"
+    },
+    {
+      "name": "Eoin",
+      "teams": ["ITA", "TUR", "SVK"],
+      "image": "/college/eoin.jpg"
+    },
+    {
+      "name": "Waheed",
+      "teams": ["ENG", "AUT", "SCO"],
+      "image": "/pintmen/waheed.jpg"
+    },
+    {
+      "name": "Austin",
+      "teams": ["ITA", "SRB", "GEO"],
+      "image": "/pintmen/austin.jpg"
+    },
+    {
+      "name": "Dale",
+      "teams": ["FRA", "UKR", "SVN"],
+      "image": "/pintmen/dale.jpg"
+>>>>>>> aa24841 (Re-add country code type)
     },
     {
       "name": "Peter",

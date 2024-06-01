@@ -10,6 +10,10 @@ export type Player = {
 export default class Sweepstakes extends Service {
   players!: Array<Player>;
   countryMapping: Record<CountryCode, Array<Player>> = {
+    ALB: [],
+    SVN: [],
+    ROU: [],
+    GEO: [],
     ENG: [],
     DEN: [],
     MKD: [],

@@ -16,14 +16,19 @@ export default class WorldCup extends Route {
       console.debug(`using '${ENV.APP.default_group}' as default id`);
       id = ENV.APP.default_group as string;
     }
-    try {
-      let response = await fetch(`/players/${id}.json`);
-      let loadedData = await response.json();
-      players = loadedData.players;
-    } catch {
-      players = [];
-    }
 
+    if (id === undefined) {
+      players = [];
+    } else {
+      try {
+        let response = await fetch(`/players/${id}.json`);
+        let loadedData = await response.json();
+        players = loadedData.players;
+      } catch {
+        players = [];
+      }
+
+    }
     this.sweepstakes.setPlayers(players);
     await taskFor(this.api.loadModel).perform();
     taskFor(this.api.enqueueRefresh).perform();
