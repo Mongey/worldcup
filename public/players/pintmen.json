@@ -8,7 +8,7 @@
     {
       "name": "Marty",
       "teams": ["GER", "DEN", "ALB"],
-      "image": "/pintmen/marty.jpg"
+      "image": "/pintmen/martin.jpg"
     },
     {
       "name": "Sean",
@@ -18,7 +18,7 @@
     {
       "name": "Eoin",
       "teams": ["ITA", "TUR", "SVK"],
-      "image": "/pintmen/eoin.jpg"
+      "image": "/college/eoin.jpg"
     },
     {
       "name": "Waheed",

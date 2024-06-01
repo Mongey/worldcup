@@ -13,7 +13,71 @@ enum competitionType {
   Fifa,
   Uefa,
 }
-export type CountryCode = string;
+export type CountryCode =
+  | 'ALB'
+  | 'SVN'
+  | 'ROU'
+  | 'GEO'
+  | 'ENG'
+  | 'DEN'
+  | 'MKD'
+  | 'ITA'
+  | 'RUS'
+  | 'UKR'
+  | 'NED'
+  | 'POL'
+  | 'WAL'
+  | 'GER'
+  | 'CRO'
+  | 'FIN'
+  | 'BEL'
+  | 'SWE'
+  | 'HUN'
+  | 'POR'
+  | 'TUR'
+  | 'SVK'
+  | 'FRA'
+  | 'SUI'
+  | 'SCO'
+  | 'ESP'
+  | 'AUT'
+  | 'CZE'
+  | 'ARG'
+  | 'BRA'
+  | 'MAR'
+  | 'AUS'
+  | 'CAN'
+  | 'GHA'
+  | 'JPN'
+  | 'MEX'
+  | 'SEN'
+  | 'URU'
+  | 'CMR'
+  | 'KOR'
+  | 'QAT'
+  | 'SRB'
+  | 'TUN'
+  | 'USA'
+  | 'CRC'
+  | 'ECU'
+  | 'IRN'
+  | 'KSA'
+  | 'NOR'
+  | 'CHE'
+  | 'NZL'
+  | 'PHI'
+  | 'IRL'
+  | 'NGA'
+  | 'ZAM'
+  | 'CRI'
+  | 'DNK'
+  | 'CHN'
+  | 'HAI'
+  | 'VIE'
+  | 'JAM'
+  | 'PAN'
+  | 'RSA'
+  | 'COL';
 
 export interface TeamWireFormat {
   internationalName: string;
@@ -255,7 +319,8 @@ export default class Api extends Service {
         team: {
           internationalName: standing?.Team?.ShortClubName,
           associationLogoUrl: '',
-          countryCode: standing?.Team?.IdCountry ?? standing?.Team?.IdAssociation,
+          countryCode:
+            standing?.Team?.IdCountry ?? standing?.Team?.IdAssociation,
           isPlaceholder: false,
         },
       };
@@ -291,9 +356,7 @@ export default class Api extends Service {
   }
   @task
   *liveScores(): TaskGenerator<any> {
-    let res = yield Promise.all([
-      this.fetch(liveScoreEndpoint),
-    ]);
+    let res = yield Promise.all([this.fetch(liveScoreEndpoint)]);
 
     return res[0];
   }
