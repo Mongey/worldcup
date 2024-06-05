@@ -295,7 +295,6 @@ export default class Api extends Service {
     let liveFixtures = this.model.liveScores.filter(
       (fixture) => fixture.MatchStatus === 3
     );
-    console.log(fixtures);
 
     let mappedStandings = standings.map((standing) => {
       return {
