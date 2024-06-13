@@ -4,44 +4,44 @@
       "name": "Alan Kelly",
       "teams": [
         "ENG",
-        "SUI",
-        "SVK"
+        "AUT",
+        "ALB"
       ],
       "image": "lucan/alk.jpg"
     },
     {
       "name": "Conor Murphy",
       "teams": [
-        "NED",
-        "UKR",
-        "HUN"
+        "POR",
+        "HUN",
+        "SVK"
       ],
       "image": "lucan/murph.jpg"
     },
     {
       "name": "Niall Smith",
       "teams": [
-        "BEL",
-        "SUI",
-        "ALB"
+        "ENG",
+        "HUN",
+        "SCO"
       ],
       "image": "lucan/niall_smith.jpg"
     },
     {
       "name": "Dan Howlett",
       "teams": [
-        "FRA",
-        "SRB",
-        "CZE"
+        "GER",
+        "UKR",
+        "SCO"
       ],
       "image": "lucan/dan.jpg"
     },
     {
       "name": "Paul Cully",
       "teams": [
-        "POR",
-        "POL",
-        "ROU"
+        "NED",
+        "SRB",
+        "POL"
       ],
       "image": "lucan/cully.jpg"
     },
@@ -49,25 +49,25 @@
       "name": "Callum Sally",
       "teams": [
         "ESP",
-        "SRB",
-        "SCO"
+        "TUR",
+        "SVN"
       ],
       "image": "lucan/cal.jpg"
     },
     {
       "name": "Alan Gallagher",
       "teams": [
-        "ITA",
-        "UKR",
-        "GEO"
+        "BEL",
+        "SRB",
+        "CZE"
       ],
       "image": "lucan/algal.jpg"
     },
     {
       "name": "Conor Mulhern",
       "teams": [
-        "GER",
-        "TUR",
+        "FRA",
+        "DEN",
         "ALB"
       ],
       "image": "lucan/mul.jpg"
@@ -75,8 +75,8 @@
     {
       "name": "James Doonan",
       "teams": [
-        "FRA",
-        "CRO",
+        "ESP",
+        "AUT",
         "GEO"
       ],
       "image": "lucan/james.jpg"
@@ -85,16 +85,16 @@
       "name": "Anto Lee",
       "teams": [
         "ITA",
-        "AUT",
-        "SCO"
+        "CRO",
+        "GEO"
       ],
       "image": "lucan/anto.jpg"
     },
     {
       "name": "Niall Rigney",
       "teams": [
-        "GER",
-        "POL",
+        "ITA",
+        "DEN",
         "SVN"
       ],
       "image": "lucan/riggers.jpg"
@@ -102,9 +102,9 @@
     {
       "name": "Conor Mongey",
       "teams": [
-        "ENG",
-        "AUT",
-        "SVK"
+        "GER",
+        "CRO",
+        "ROU"
       ],
       "image": "lucan/conor.jpg"
     },
@@ -112,8 +112,8 @@
       "name": "Alan Walsh",
       "teams": [
         "POR",
-        "DEN",
-        "HUN"
+        "SUI",
+        "POL"
       ],
       "image": "lucan/alw.jpg"
     }
