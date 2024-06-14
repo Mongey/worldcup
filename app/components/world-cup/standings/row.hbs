@@ -1,5 +1,5 @@
-<tr class="text-gray-800 dark:text-white text-lg relative {{if (eq @index 0) 'bg-green-900'}} {{if (eq (inc @index) @totalRows) 'bg-red-900'}} bg-opacity-30">
-  <td class="max-w-0 overflow-visible">
+<tr class="text-gray-800 dark:text-white text-lg {{if (eq @index 0) 'bg-green-900'}} {{if (eq (inc @index) @totalRows) 'bg-red-900'}} bg-opacity-30">
+  <td class="max-w-0 overflow-visible relative">
     {{#if @standing.isLive}}
       <div class="absolute left-0 top-0 h-full w-1 bg-red-600 animate-pulse rounded-sm">
       </div>
@@ -13,9 +13,9 @@
     </div>
   </td>
   <td>
-    <div class="flex flex-row space-x-1 lg:space-x-2 items-center shrink fit-content">
+    <div class="flex flex-row space-x-1 lg:space-x-2 items-center flex-shrink-0 fit-content">
       {{#each @standing.player.teams as |countryCode|}}
-        <img alt= "{{countryCode}}" src="/assets/svg/flags/{{countryCode}}.svg" class="h-4 lg:h-6 rounded-sm"/>
+        <img src="/assets/svg/flags/{{countryCode}}.svg" class="h-4 lg:h-6 rounded-sm"/>
       {{/each}}
     </div>
   </td>
@@ -25,5 +25,5 @@
   <td class="p-1 lg:p-2">{{@standing.lost}}</td>
   <td class="p-1 lg:p-2">{{@standing.goalsFor}}</td>
   <td class="p-1 lg:p-2">{{@standing.goalDifference}}</td>
-  <td class="p-1 lg:p-2">{{@standing.points}}</td>
+  <td class="p-1 lg:p-2 pr-4">{{@standing.points}}</td>
 </tr>

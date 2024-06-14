@@ -38,6 +38,7 @@ export default class WorldCupStandingsComponent extends Component<Args> {
         standings[teamStanding.team.countryCode] = teamStanding;
       });
 
+    console.log({ standings });
     return standings;
   }
 
@@ -74,6 +75,7 @@ export default class WorldCupStandingsComponent extends Component<Args> {
   }
 
   get orderedTotals(): Array<PlayerStanding> {
+    console.log(this.totals);
     return this.totals.sort((a, b) => {
       if (a.points < b.points) return 1;
       if (a.points > b.points) return -1;
