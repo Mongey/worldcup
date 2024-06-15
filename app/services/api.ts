@@ -141,6 +141,7 @@ export interface FifaStandingWireFormat {
   Team: {
     IdCountry: string;
     ShortClubName: string;
+    IdAssociation: string;
   };
   Won: number;
   Played: number;
