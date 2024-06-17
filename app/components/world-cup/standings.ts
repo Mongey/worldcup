@@ -77,12 +77,11 @@ export default class WorldCupStandingsComponent extends Component<Args> {
       if (a.points < b.points) return 1;
       if (a.points > b.points) return -1;
 
-      // TODO: swap with goalsFor once euros 2024 is over
-      if (a.goalsFor < b.goalsFor) return 1;
-      if (a.goalsFor > b.goalsFor) return -1;
-
       if (a.goalDifference < b.goalDifference) return 1;
       if (a.goalDifference > b.goalDifference) return -1;
+
+      if (a.goalsFor < b.goalsFor) return 1;
+      if (a.goalsFor > b.goalsFor) return -1;
 
       if (a.won < b.won) return 1;
       if (a.won > b.won) return -1;
