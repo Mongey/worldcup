@@ -95,6 +95,7 @@ export interface FixtureWireFormat {
   minute?: { normal: number; injury?: number };
   translations?: { phaseName: { EN: string } };
   score?: { total: { away: number; home: number } };
+  round?: { metaData: { name: string } };
 }
 
 export interface TeamStanding {
