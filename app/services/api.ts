@@ -7,7 +7,6 @@ const standingsEndpoint = `https://standings.uefa.com/v1/standings?competitionId
 const apiKey = `ceeee1a5bb209502c6c438abd8f30aef179ce669bb9288f2d1cf2fa276de03f4`;
 const liveScoreEndpoint = `https://api.fifa.com/api/v3/live/football/range?from=2022-12-01T00:00:00Z&to=2022-12-20T00:00:00Z&IdSeason=255711&IdCompetition=17`;
 const fifaStandingsEndpoint = `https://api.fifa.com/api/v3/calendar/17/255711/285063/standing?language=en`;
-const uefaLiveScoreEndpoint = `https://match.uefa.com/v5/matches?competitionId=3&limit=51&offset=0&order=ASC&phase=TOURNAMENT&seasonYear=2024`;
 
 enum competitionType {
   Fifa,
@@ -80,10 +79,7 @@ export type CountryCode =
   | 'COL';
 
 export interface TeamWireFormat {
-  internationalName: string;
-  associationLogoUrl: string;
   countryCode: CountryCode;
-  isPlaceholder: boolean;
 }
 
 export interface FixtureWireFormat {
@@ -206,16 +202,10 @@ function parseUefaFixture(fixture: any): FixtureWireFormat {
 function parseFifaFixture(fifaFixture: any): FixtureWireFormat {
   let fixture: FixtureWireFormat = {
     homeTeam: {
-      internationalName: fifaFixture.HomeTeam.ShortClubName,
-      associationLogoUrl: '',
       countryCode: fifaFixture.HomeTeam.IdCountry as CountryCode,
-      isPlaceholder: false,
     },
     awayTeam: {
-      internationalName: fifaFixture.AwayTeam.ShortClubName,
-      associationLogoUrl: '',
       countryCode: fifaFixture.AwayTeam.IdCountry as CountryCode,
-      isPlaceholder: false,
     },
     kickOffTime: { dateTime: fifaFixture.Date },
     group: {
@@ -275,42 +265,90 @@ function parseFifaStandings(
       points: standing?.Points,
       won: standing?.Won,
       team: {
-        internationalName: standing?.Team?.ShortClubName,
-        associationLogoUrl: '',
-        countryCode: standing?.Team?.IdCountry ?? standing?.Team?.IdAssociation,
-        isPlaceholder: false,
+        countryCode:
+          standing?.Team?.IdCountry ??
+          (standing?.Team?.IdAssociation as CountryCode),
       },
     };
-  }) as Array<TeamStanding>;
+  });
 }
 
-function parseUefaStandings(
-  standings: Array<UefaStandingWireFormat>,
-  liveFixtures: Array<MatchResult>
-): Array<TeamStanding> {
-  return standings.map((standing) => {
-    return {
-      drawn: standing?.drawn,
-      goalDifference: standing?.goalDifference,
-      goalsAgainst: standing?.goalsAgainst,
-      goalsFor: standing?.goalsFor,
-      isLive: liveFixtures.any(
-        (fixture) =>
-          fixture.homeTeam?.countryCode === standing.team.countryCode ||
-          fixture.awayTeam?.countryCode === standing.team.countryCode
-      ),
-      lost: standing?.lost,
-      played: standing?.played,
-      points: standing?.points,
-      won: standing?.won,
-      team: {
-        internationalName: standing.team.internationalName,
-        associationLogoUrl: '',
-        countryCode: standing.team.countryCode,
-        isPlaceholder: false,
-      },
+function parseUefaStandings(liveFixtures: Array<any>): Array<TeamStanding> {
+  let viaFixtures = liveFixtures.reduce((acc, fixture) => {
+    if (fixture.status !== 'FINISHED') {
+      return acc;
+    }
+    let nullTeamStanding: TeamStanding = {
+      drawn: 0,
+      goalDifference: 0,
+      goalsAgainst: 0,
+      goalsFor: 0,
+      isLive: false,
+      lost: 0,
+      played: 0,
+      points: 0,
+      won: 0,
+      fixtures: [],
+      team: { countryCode: 'ENG' as CountryCode },
     };
-  }) as Array<TeamStanding>;
+    let homeCode = fixture.homeTeam?.countryCode as CountryCode;
+    let awayCode = fixture.awayTeam?.countryCode as CountryCode;
+    if (!acc.has(homeCode)) {
+      acc.set(homeCode, {
+        ...nullTeamStanding,
+        team: { countryCode: homeCode },
+      });
+    }
+    if (!acc.has(awayCode)) {
+      acc.set(awayCode, {
+        ...nullTeamStanding,
+        team: { countryCode: awayCode },
+      });
+    }
+    let homeStanding = acc.get(homeCode)!;
+    let awayStanding = acc.get(awayCode)!;
+
+    if (fixture.MatchStatus === 3) {
+      homeStanding.isLive = true;
+      awayStanding.isLive = true;
+    }
+
+    homeStanding.played++;
+    awayStanding.played++;
+    homeStanding.fixtures.push(fixture);
+    awayStanding.fixtures.push(fixture);
+
+    if (fixture.status === 'FINISHED' && fixture.score && fixture.score) {
+      homeStanding.goalsFor += fixture.score.total.home;
+      homeStanding.goalsAgainst += fixture.score.total.away;
+      awayStanding.goalsFor += fixture.score.total.away;
+      awayStanding.goalsAgainst += fixture.score.total.home;
+      if (fixture.score.total.home > fixture.score.total.away) {
+        homeStanding.won++;
+        awayStanding.lost++;
+        homeStanding.points += 3;
+      } else if (fixture.homeTeam.score < fixture.awayTeam.score) {
+        awayStanding.won++;
+        homeStanding.lost++;
+        awayStanding.points += 3;
+      } else {
+        homeStanding.drawn++;
+        awayStanding.drawn++;
+        homeStanding.points++;
+        awayStanding.points++;
+      }
+      homeStanding.goalDifference =
+        fixture.score.total.home - fixture.score.total.away;
+      awayStanding.goalDifference =
+        fixture.score.total.away - fixture.score.total.home;
+    }
+
+    acc.set(homeCode, homeStanding);
+    acc.set(awayCode, awayStanding);
+    return acc;
+  }, new Map<CountryCode, TeamStanding>());
+
+  return Array.from(viaFixtures.values());
 }
 export default class Api extends Service {
   @tracked model!: {
@@ -347,13 +385,14 @@ export default class Api extends Service {
         liveScores = result[1].Results as Array<MatchResult>;
         break;
     }
+    console.log({ foo: liveScores });
     this.model = {
       standings: [],
       fixtures: result[0] as Array<FixtureWireFormat>,
       liveScores: liveScores,
     };
 
-    let standings: Array<FifaStandingWireFormat | UefaStandingWireFormat>;
+    let mappedStandings: Array<TeamStanding> = [];
 
     let fixtures: FixtureWireFormat[] = this.model.liveScores.map((fixture) => {
       switch (comp) {
@@ -364,11 +403,9 @@ export default class Api extends Service {
       }
     });
 
+    let standings;
     switch (comp) {
       case competitionType.Uefa:
-        standings = result[0].flatMap(
-          (group: { items: Array<UefaStandingWireFormat> }) => group.items
-        ) as Array<UefaStandingWireFormat>;
         break;
       case competitionType.Fifa:
         let fifaStandings = result[1].Results as Array<FifaStandingWireFormat>;
@@ -380,8 +417,6 @@ export default class Api extends Service {
       (fixture) => fixture.MatchStatus === 3 || fixture.status === 'LIVE'
     );
 
-    let mappedStandings: Array<TeamStanding> = [];
-
     switch (comp) {
       case competitionType.Fifa:
         mappedStandings = parseFifaStandings(
@@ -391,11 +426,7 @@ export default class Api extends Service {
         break;
 
       case competitionType.Uefa:
-        standings = standings as Array<UefaStandingWireFormat>;
-        mappedStandings = parseUefaStandings(
-          standings as Array<UefaStandingWireFormat>,
-          liveFixtures
-        );
+        mappedStandings = parseUefaStandings(this.model.liveScores);
         break;
     }
 
@@ -424,9 +455,32 @@ export default class Api extends Service {
   }
 
   @task
-  *uefaLiveScores(): TaskGenerator<any> {
-    return yield this.fetch(uefaLiveScoreEndpoint);
+  *uefaLiveScores(): TaskGenerator<Array<UefaStandingWireFormat>> {
+    let pageSize = 50;
+    let fixtures = new Map<string, UefaStandingWireFormat>();
+    let newFixturesToFecth = true;
+    let i = 0;
+    let previousFixtureCount = 0;
+    while (newFixturesToFecth) {
+      let offset = i * pageSize;
+      let url = `https://match.uefa.com/v5/matches?competitionId=3&limit=${pageSize}&offset=${offset}&order=ASC&phase=TOURNAMENT&seasonYear=2024`;
+      console.log({ url });
+      let result = yield this.fetch(url);
+
+      result.forEach((fixture) => {
+        fixtures.set(fixture.id, fixture);
+      });
+
+      if (fixtures.size === previousFixtureCount) {
+        newFixturesToFecth = false;
+      }
+      previousFixtureCount = fixtures.size;
+      i++;
+    }
+
+    return Array.from(fixtures.values());
   }
+
   @task
   *liveScores(): TaskGenerator<any> {
     let res = yield Promise.all([this.fetch(liveScoreEndpoint)]);
