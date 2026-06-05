@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { HashRouter, Navigate, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { Sweepstakes } from "./pages/Sweepstakes";
 
 // Mirror the OS prefers-color-scheme onto a `.dark` class on <html>. Using
@@ -19,11 +19,11 @@ function useSystemDarkMode(): void {
 export function App() {
   useSystemDarkMode();
   return (
-    <HashRouter>
+    <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Navigate to="/development" replace />} />
+        <Route path="/" element={<Sweepstakes />} />
         <Route path="/:id" element={<Sweepstakes />} />
       </Routes>
-    </HashRouter>
+    </BrowserRouter>
   );
 }

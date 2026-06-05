@@ -2,7 +2,7 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [master, world-cup-2026]
+    branches: [master, world-cup-2026, cm/worldcup-2026]
   workflow_dispatch:
 
 permissions:
@@ -36,4 +36,4 @@ jobs:
           publish_dir: ./dist
           publish_branch: gh-pages
           force_orphan: true
-          cname: nolaneo.com
+          cname: worldcup.mongey.net

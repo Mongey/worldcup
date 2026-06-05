@@ -6,7 +6,7 @@ import { StandingsTable } from "../components/StandingsTable";
 import { useSweepstakes } from "../hooks/useSweepstakes";
 import { computePlayerStandings, type Player } from "../lib/sweepstakes";
 
-const DEFAULT_GROUP = "development";
+const DEFAULT_GROUP = import.meta.env.PROD ? "lucan" : "development";
 
 export function Sweepstakes() {
   const params = useParams<{ id?: string }>();
