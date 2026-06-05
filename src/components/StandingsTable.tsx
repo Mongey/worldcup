@@ -90,12 +90,12 @@ export function StandingsTable({ rows }: Props) {
 
                 {/* Flags */}
                 <td className="px-1 sm:px-2 py-3">
-                  <div className="flex flex-wrap items-center gap-1 sm:gap-1.5">
+                  <div className="flex items-center gap-0.5 sm:gap-1">
                     {row.teams.map((t) => (
                       <Flag
                         key={t.code}
                         code={t.code}
-                        className={`h-4 sm:h-6 w-auto ${
+                        className={`h-3 sm:h-4 w-auto ${
                           t.isLive ? "ring-2 ring-usa-red animate-siren" : ""
                         }`}
                       />

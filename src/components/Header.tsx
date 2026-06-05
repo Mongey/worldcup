@@ -17,13 +17,25 @@ export function Header({ fetchedAt }: Props) {
   return (
     <header className="relative">
       {/* Top bunting strip */}
-      <div aria-hidden className="h-3 sm:h-4 bunting" />
+      <div aria-hidden className="h-5 sm:h-6 bunting" />
 
-      <div className="relative bg-usa-cream dark:bg-usa-navy-night border-y-4 border-usa-red">
+      <div className="relative overflow-hidden bg-usa-cream dark:bg-usa-navy-night border-y-4 border-usa-red">
         {/* Navy star-field canton on the left, visible on wider viewports */}
         <div
           aria-hidden
           className="hidden sm:block absolute left-0 top-0 bottom-0 w-24 star-field"
+        />
+        <img
+          aria-hidden
+          alt=""
+          src="/assets/donald-trump-share-crop.png"
+          className="pointer-events-none absolute inset-y-0 right-0 h-full w-40 object-cover opacity-20 mix-blend-multiply sm:w-56 dark:opacity-10 dark:mix-blend-screen"
+          style={{
+            maskImage:
+              "linear-gradient(to left, rgba(0,0,0,0.95), rgba(0,0,0,0.55) 58%, transparent)",
+            WebkitMaskImage:
+              "linear-gradient(to left, rgba(0,0,0,0.95), rgba(0,0,0,0.55) 58%, transparent)",
+          }}
         />
 
         <div className="relative max-w-3xl mx-auto px-4 sm:px-28 py-4 sm:py-5 flex items-center justify-center gap-4">
@@ -62,8 +74,7 @@ export function Header({ fetchedAt }: Props) {
       </div>
 
       {/* Bottom bunting strip */}
-      <div aria-hidden className="h-3 sm:h-4 bunting" />
+      <div aria-hidden className="h-5 sm:h-6 bunting" />
     </header>
   );
 }
-

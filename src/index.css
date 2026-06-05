@@ -34,9 +34,9 @@
     background-image: repeating-linear-gradient(
       to bottom,
       #B22234 0,
-      #B22234 5px,
-      #FFFFFF 5px,
-      #FFFFFF 10px
+      #B22234 8px,
+      #FFFFFF 8px,
+      #FFFFFF 16px
     );
   }
 
@@ -45,9 +45,9 @@
     background-image: repeating-linear-gradient(
       to right,
       #B22234 0,
-      #B22234 5px,
-      #FFFFFF 5px,
-      #FFFFFF 10px
+      #B22234 8px,
+      #FFFFFF 8px,
+      #FFFFFF 16px
     );
   }
 
