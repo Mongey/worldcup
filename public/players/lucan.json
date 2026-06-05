@@ -1,0 +1,69 @@
+{
+  "players": [
+    {
+      "name": "Alan Kelly",
+      "teams": [],
+      "image": "lucan/alk.jpg"
+    },
+    {
+      "name": "Conor Murphy",
+      "teams": [],
+      "image": "lucan/murph.jpg"
+    },
+    {
+      "name": "Niall Smith",
+      "teams": [],
+      "image": "lucan/niall_smith.jpg"
+    },
+    {
+      "name": "Dan Howlett",
+      "teams": [],
+      "image": "lucan/dan.jpg"
+    },
+    {
+      "name": "Paul Cully",
+      "teams": [],
+      "image": "lucan/cully.jpg"
+    },
+    {
+      "name": "Callum Sally",
+      "teams": [],
+      "image": "lucan/cal.jpg"
+    },
+    {
+      "name": "Alan Gallagher",
+      "teams": [],
+      "image": "lucan/algal.jpg"
+    },
+    {
+      "name": "Conor Mulhern",
+      "teams": [],
+      "image": "lucan/mul.jpg"
+    },
+    {
+      "name": "James Doonan",
+      "teams": [],
+      "image": "lucan/james.jpg"
+    },
+    {
+      "name": "Anto Lee",
+      "teams": [],
+      "image": "lucan/anto.jpg"
+    },
+    {
+      "name": "Niall Rigney",
+      "teams": [],
+      "image": "lucan/riggers.jpg"
+    },
+    {
+      "name": "Conor Mongey",
+      "teams": [],
+      "image": "lucan/conor.jpg"
+    },
+    {
+      "name": "Alan Walsh",
+      "teams": [],
+      "image": "lucan/alw.jpg"
+    }
+  ]
+}
