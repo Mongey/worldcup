@@ -2,67 +2,158 @@
   "players": [
     {
       "name": "Alan Kelly",
-      "teams": [],
+      "teams": [
+        "FRA",
+        "BEL",
+        "TUR",
+        "ALG",
+        "COD",
+        "KSA"
+      ],
       "image": "lucan/alk.jpg"
     },
     {
       "name": "Conor Murphy",
-      "teams": [],
+      "teams": [
+        "GER",
+        "JPN",
+        "CRO",
+        "SCO",
+        "AUS",
+        "RSA"
+      ],
       "image": "lucan/murph.jpg"
     },
     {
       "name": "Niall Smith",
-      "teams": [],
+      "teams": [
+        "ENG",
+        "URU",
+        "CIV",
+        "PAR",
+        "IRQ",
+        "JOR"
+      ],
       "image": "lucan/niall_smith.jpg"
     },
     {
       "name": "Dan Howlett",
-      "teams": [],
+      "teams": [
+        "NED",
+        "USA",
+        "AUT",
+        "KOR",
+        "QAT",
+        "CPV"
+      ],
       "image": "lucan/dan.jpg"
     },
     {
       "name": "Paul Cully",
-      "teams": [],
+      "teams": [
+        "BRA",
+        "COL",
+        "SUI",
+        "EGY",
+        "CZE",
+        "CUW"
+      ],
       "image": "lucan/cully.jpg"
     },
     {
       "name": "Callum Sally",
-      "teams": [],
+      "teams": [
+        "ARG",
+        "MAR",
+        "SEN",
+        "BIH",
+        "PAN",
+        "NZL"
+      ],
       "image": "lucan/cal.jpg"
     },
     {
       "name": "Alan Gallagher",
-      "teams": [],
+      "teams": [
+        "BRA",
+        "BEL",
+        "SEN",
+        "KOR",
+        "TUN",
+        "JOR"
+      ],
       "image": "lucan/algal.jpg"
     },
     {
       "name": "Conor Mulhern",
-      "teams": [],
+      "teams": [
+        "FRA",
+        "MAR",
+        "CAN",
+        "SWE",
+        "AUS",
+        "CPV"
+      ],
       "image": "lucan/mul.jpg"
     },
     {
       "name": "James Doonan",
-      "teams": [],
+      "teams": [
+        "ESP",
+        "MEX",
+        "ECU",
+        "SWE",
+        "UZB",
+        "HAI"
+      ],
       "image": "lucan/james.jpg"
     },
     {
       "name": "Anton Lehmann",
-      "teams": [],
+      "teams": [
+        "ARG",
+        "NOR",
+        "CAN",
+        "IRN",
+        "TUN",
+        "GHA"
+      ],
       "image": "lucan/anto.jpg"
     },
     {
       "name": "Niall Rigney",
-      "teams": [],
+      "teams": [
+        "NED",
+        "NOR",
+        "SUI",
+        "PAR",
+        "UZB",
+        "NZL"
+      ],
       "image": "lucan/riggers.jpg"
     },
     {
       "name": "Conor Mongey",
-      "teams": [],
+      "teams": [
+        "POR",
+        "MEX",
+        "TUR",
+        "SCO",
+        "PAN",
+        "CUW"
+      ],
       "image": "lucan/conor.jpg"
     },
     {
       "name": "Alan Walsh",
-      "teams": [],
+      "teams": [
+        "POR",
+        "USA",
+        "CRO",
+        "IRN",
+        "CZE",
+        "KSA"
+      ],
       "image": "lucan/alw.jpg"
     }
   ]
