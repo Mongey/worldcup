@@ -27,7 +27,7 @@ export function Header({ fetchedAt }: Props) {
         />
 
         <div className="relative max-w-3xl mx-auto px-4 sm:px-28 py-4 sm:py-5 flex items-center justify-center gap-4">
-          <span aria-hidden className="hidden sm:block text-5xl leading-none select-none -scale-x-100">
+          <span aria-hidden className="text-3xl sm:text-5xl leading-none select-none -scale-x-100">
             🦅
           </span>
 
@@ -43,7 +43,7 @@ export function Header({ fetchedAt }: Props) {
             </div>
           </div>
 
-          <span aria-hidden className="hidden sm:block text-5xl leading-none select-none">
+          <span aria-hidden className="text-3xl sm:text-5xl leading-none select-none">
             🦅
           </span>
         </div>
