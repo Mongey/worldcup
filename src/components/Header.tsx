@@ -17,7 +17,7 @@ export function Header({ fetchedAt }: Props) {
   return (
     <header className="relative">
       {/* Top bunting strip */}
-      <div aria-hidden className="h-2 bunting" />
+      <div aria-hidden className="h-3 sm:h-4 bunting" />
 
       <div className="relative bg-usa-cream dark:bg-usa-navy-night border-y-4 border-usa-red">
         {/* Navy star-field canton on the left, visible on wider viewports */}
@@ -62,7 +62,7 @@ export function Header({ fetchedAt }: Props) {
       </div>
 
       {/* Bottom bunting strip */}
-      <div aria-hidden className="h-2 bunting" />
+      <div aria-hidden className="h-3 sm:h-4 bunting" />
     </header>
   );
 }

@@ -18,28 +18,28 @@ export function StandingsTable({ rows }: Props) {
   }
 
   return (
-    <section className="border-4 border-usa-navy dark:border-usa-cream bg-usa-cream dark:bg-usa-navy-deep shadow-[6px_6px_0_#B22234]">
+    <section className="border-4 border-usa-navy dark:border-usa-cream bg-usa-cream dark:bg-usa-navy-deep shadow-[6px_6px_0_#B22234] overflow-hidden">
       {/* Section banner */}
-      <div className="bg-usa-red text-usa-cream px-4 py-2 flex items-center justify-between border-b-4 border-usa-navy dark:border-usa-cream">
-        <span className="font-display uppercase text-xl sm:text-2xl leading-none">
+      <div className="bg-usa-red text-usa-cream px-3 sm:px-4 py-2 flex items-center justify-between gap-3 border-b-4 border-usa-navy dark:border-usa-cream">
+        <span className="font-display uppercase text-base sm:text-2xl leading-none min-w-0">
           ★ Leaderboard of the Free ★
         </span>
-        <span className="font-stencil text-[10px] sm:text-xs uppercase tracking-huge opacity-90">
+        <span className="font-stencil text-[9px] sm:text-xs uppercase tracking-huge opacity-90 whitespace-nowrap">
           OFFICIAL · BINDING
         </span>
       </div>
 
-      <table className="w-full text-left">
+      <table className="w-full text-left table-fixed">
         <thead className="bg-usa-navy text-usa-cream">
           <tr className="font-stencil text-[10px] uppercase tracking-wider">
-            <th className="px-2 py-2 w-10 text-center">RNK</th>
-            <th className="px-2 py-2" colSpan={2}>PATRIOT · TEAMS</th>
-            <th className="px-1.5 py-2 text-center w-9">MP</th>
-            <th className="px-1.5 py-2 text-center w-8 hidden xs:table-cell">W</th>
-            <th className="px-1.5 py-2 text-center w-8 hidden xs:table-cell">D</th>
-            <th className="px-1.5 py-2 text-center w-8 hidden xs:table-cell">L</th>
-            <th className="px-1.5 py-2 text-center w-10 hidden sm:table-cell">GD</th>
-            <th className="px-3 py-2 text-right w-14 text-usa-gold">PTS</th>
+            <th className="px-1 sm:px-2 py-2 w-9 sm:w-10 text-center">RNK</th>
+            <th className="px-1 sm:px-2 py-2" colSpan={2}>PATRIOT · TEAMS</th>
+            <th className="px-1 py-2 text-center w-8 sm:w-9 hidden min-[600px]:table-cell">MP</th>
+            <th className="px-1 py-2 text-center w-7 sm:w-8 hidden min-[380px]:table-cell">W</th>
+            <th className="px-1 py-2 text-center w-7 sm:w-8 hidden min-[520px]:table-cell">D</th>
+            <th className="px-1 py-2 text-center w-7 sm:w-8 hidden min-[440px]:table-cell">L</th>
+            <th className="px-1 py-2 text-center w-10 hidden min-[720px]:table-cell">GD</th>
+            <th className="px-2 sm:px-3 py-2 text-right w-12 sm:w-14 text-usa-gold">PTS</th>
           </tr>
         </thead>
         <tbody>
@@ -63,13 +63,13 @@ export function StandingsTable({ rows }: Props) {
                 </td>
 
                 {/* Player */}
-                <td className="pl-2 pr-2 py-3 whitespace-nowrap">
-                  <div className="flex items-center gap-2.5">
+                <td className="pl-1 sm:pl-2 pr-1 py-3 min-w-0">
+                  <div className="flex items-center gap-1.5 sm:gap-2.5 min-w-0">
                     {row.player.image && (
                       <Avatar
                         src={row.player.image}
                         alt={row.player.name}
-                        className={`w-10 h-10 shrink-0 ring-2 ${
+                        className={`w-7 h-7 sm:w-10 sm:h-10 shrink-0 ring-2 ${
                           isFirst
                             ? "ring-usa-gold"
                             : "ring-usa-navy/30 dark:ring-usa-cream/30"
@@ -77,7 +77,7 @@ export function StandingsTable({ rows }: Props) {
                       />
                     )}
                     <span
-                      className={`font-display uppercase text-lg sm:text-xl leading-none ${
+                      className={`font-display uppercase text-xs min-[380px]:text-sm sm:text-xl leading-tight break-words min-w-0 ${
                         isFirst
                           ? "text-usa-red"
                           : "text-usa-navy dark:text-usa-cream"
@@ -89,13 +89,13 @@ export function StandingsTable({ rows }: Props) {
                 </td>
 
                 {/* Flags */}
-                <td className="px-2 py-3">
-                  <div className="flex items-center gap-1 sm:gap-1.5">
+                <td className="px-1 sm:px-2 py-3">
+                  <div className="flex flex-wrap items-center gap-1 sm:gap-1.5">
                     {row.teams.map((t) => (
                       <Flag
                         key={t.code}
                         code={t.code}
-                        className={`h-5 sm:h-6 w-auto ${
+                        className={`h-4 sm:h-6 w-auto ${
                           t.isLive ? "ring-2 ring-usa-red animate-siren" : ""
                         }`}
                       />
@@ -103,25 +103,26 @@ export function StandingsTable({ rows }: Props) {
                   </div>
                 </td>
 
-                {/* Stat cells — chunky stencil */}
-                <td className="px-1.5 py-3 text-center font-stencil tab-num text-sm text-usa-navy/80 dark:text-usa-cream/80">
+                {/* Stat cells — chunky stencil. Hide order from narrowest up:
+                    MP drops first, then D, then L, then W. GD is the last to appear. */}
+                <td className="px-1 py-3 text-center font-stencil tab-num text-sm text-usa-navy/80 dark:text-usa-cream/80 hidden min-[600px]:table-cell">
                   {row.played}
                 </td>
-                <td className="px-1.5 py-3 text-center font-stencil tab-num text-sm text-usa-navy/80 dark:text-usa-cream/80 hidden xs:table-cell">
+                <td className="px-1 py-3 text-center font-stencil tab-num text-sm text-usa-navy/80 dark:text-usa-cream/80 hidden min-[380px]:table-cell">
                   {row.won}
                 </td>
-                <td className="px-1.5 py-3 text-center font-stencil tab-num text-sm text-usa-navy/80 dark:text-usa-cream/80 hidden xs:table-cell">
+                <td className="px-1 py-3 text-center font-stencil tab-num text-sm text-usa-navy/80 dark:text-usa-cream/80 hidden min-[520px]:table-cell">
                   {row.drawn}
                 </td>
-                <td className="px-1.5 py-3 text-center font-stencil tab-num text-sm text-usa-navy/80 dark:text-usa-cream/80 hidden xs:table-cell">
+                <td className="px-1 py-3 text-center font-stencil tab-num text-sm text-usa-navy/80 dark:text-usa-cream/80 hidden min-[440px]:table-cell">
                   {row.lost}
                 </td>
-                <td className="px-1.5 py-3 text-center font-stencil tab-num text-sm text-usa-navy/80 dark:text-usa-cream/80 hidden sm:table-cell">
+                <td className="px-1 py-3 text-center font-stencil tab-num text-sm text-usa-navy/80 dark:text-usa-cream/80 hidden min-[720px]:table-cell">
                   {row.goalDifference > 0 ? `+${row.goalDifference}` : row.goalDifference}
                 </td>
 
                 {/* Big freedom points — outsized varsity numerals */}
-                <td className="px-3 py-3 text-right font-display tab-num text-2xl sm:text-3xl leading-none">
+                <td className="px-2 sm:px-3 py-3 text-right font-display tab-num text-xl sm:text-3xl leading-none">
                   <span
                     className={
                       isFirst
