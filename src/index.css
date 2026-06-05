@@ -82,4 +82,16 @@
     text-shadow:
       2px 2px 0 #B22234;
   }
+
+  /* Inverted variant — navy front shadow so red glyphs read clearly. */
+  .poster-shadow-navy {
+    text-shadow:
+      3px 3px 0 #3C3B6E,
+      6px 6px 0 rgba(178, 34, 52, 0.35);
+  }
+
+  .poster-shadow-navy-light {
+    text-shadow:
+      2px 2px 0 #3C3B6E;
+  }
 }

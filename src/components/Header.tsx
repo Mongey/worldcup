@@ -35,8 +35,13 @@ export function Header({ fetchedAt }: Props) {
             <div className="font-stencil text-[10px] sm:text-xs uppercase tracking-huge text-usa-red dark:text-usa-gold leading-none mb-1">
               ★ ★ ★ &nbsp; EST. 1776 &nbsp; ★ ★ ★
             </div>
-            <h1 className="font-display text-3xl sm:text-5xl leading-[0.9] text-usa-navy dark:text-usa-cream poster-shadow-light sm:poster-shadow tracking-tight uppercase">
-              World Cup <span className="text-usa-red">2026</span>
+            <h1 className="font-display text-3xl sm:text-5xl leading-[0.9] tracking-tight uppercase">
+              <span className="text-usa-navy dark:text-usa-cream poster-shadow-light sm:poster-shadow">
+                World Cup
+              </span>{" "}
+              <span className="text-usa-red poster-shadow-navy-light sm:poster-shadow-navy">
+                2026
+              </span>
             </h1>
             <div className="font-stencil text-[10px] sm:text-xs uppercase tracking-huge text-usa-navy/70 dark:text-usa-cream/70 leading-none mt-1.5">
               USA · CAN · MEX · MMXXVI
