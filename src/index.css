@@ -7,19 +7,79 @@
     -webkit-text-size-adjust: 100%;
   }
   body {
-    font-family: "Barlow Condensed", ui-sans-serif, system-ui, sans-serif;
-    @apply bg-ink-50 text-ink-900;
+    font-family: "Special Elite", ui-serif, Georgia, serif;
+    @apply text-usa-navy-night bg-usa-cream;
+    background-image:
+      /* faint 5-pointed-star field, like the canton of the flag, tiled across the page */
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='44' height='44' viewBox='0 0 44 44'><polygon points='22,5 25.6,17 38,17 28.2,24.4 32,36 22,28.6 12,36 15.8,24.4 6,17 18.4,17' fill='%233C3B6E' opacity='0.08'/></svg>");
+    background-size: 44px 44px;
   }
   html.dark body {
-    @apply bg-ink-900 text-ink-50;
+    @apply bg-usa-navy-night text-usa-cream;
+    background-image:
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='44' height='44' viewBox='0 0 44 44'><polygon points='22,5 25.6,17 38,17 28.2,24.4 32,36 22,28.6 12,36 15.8,24.4 6,17 18.4,17' fill='%23FCD116' opacity='0.07'/></svg>");
   }
   ::selection {
-    @apply bg-brick-500 text-ink-50;
+    @apply bg-usa-red text-usa-cream;
   }
 }
 
 @layer utilities {
   .tab-num {
     font-variant-numeric: tabular-nums;
+  }
+
+  /* Stars-and-stripes bunting bar — alternating red and white horizontal stripes */
+  .bunting {
+    background-image: repeating-linear-gradient(
+      to bottom,
+      #B22234 0,
+      #B22234 5px,
+      #FFFFFF 5px,
+      #FFFFFF 10px
+    );
+  }
+
+  /* Vertical bunting strip — used as side rails / ornaments */
+  .bunting-v {
+    background-image: repeating-linear-gradient(
+      to right,
+      #B22234 0,
+      #B22234 5px,
+      #FFFFFF 5px,
+      #FFFFFF 10px
+    );
+  }
+
+  /* Star-field — the navy canton */
+  .star-field {
+    background-color: #3C3B6E;
+    background-image:
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='22' height='22' viewBox='0 0 22 22'><polygon points='11,3 12.8,8.6 18.6,8.6 13.9,12.2 15.7,17.8 11,14.2 6.3,17.8 8.1,12.2 3.4,8.6 9.2,8.6' fill='%23FFFFFF'/></svg>");
+    background-size: 22px 22px;
+  }
+
+  /* Thick red rule lines, like a propaganda poster */
+  .rule-thick {
+    box-shadow:
+      inset 0 4px 0 0 #B22234,
+      inset 0 -4px 0 0 #B22234;
+  }
+
+  /* All-caps tracking helpers */
+  .label {
+    @apply font-stencil uppercase tracking-huge;
+  }
+
+  /* Wanted-poster halftone-ish vignette behind hero text */
+  .poster-shadow {
+    text-shadow:
+      3px 3px 0 #B22234,
+      6px 6px 0 rgba(60, 59, 110, 0.35);
+  }
+
+  .poster-shadow-light {
+    text-shadow:
+      2px 2px 0 #B22234;
   }
 }

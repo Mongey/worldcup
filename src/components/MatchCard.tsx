@@ -28,7 +28,6 @@ function formatTime(iso: string): string {
   return Number.isNaN(d.getTime()) ? "" : timeFmt.format(d);
 }
 
-// Map FIFA's verbose stage names to compact labels for the pill.
 function shortStage(stage: string): string {
   switch (stage) {
     case "Round of 32": return "RO 32";
@@ -63,8 +62,6 @@ function TeamName({
   isWinner: boolean;
 }) {
   const display = name ?? "TBD";
-  // Editorial type scale, slightly smaller for very long names but never
-  // truncated.
   const sizeCls = display.length > 16
     ? "text-base sm:text-lg"
     : display.length > 11
@@ -75,13 +72,13 @@ function TeamName({
       className={`flex items-center gap-2.5 sm:gap-3 min-w-0 ${align === "right" ? "flex-row-reverse text-right" : ""}`}
     >
       {code ? (
-        <Flag code={code} className="h-6 sm:h-7 w-auto shrink-0" />
+        <Flag code={code} className="h-7 sm:h-8 w-auto shrink-0 ring-2 ring-usa-navy/20 dark:ring-usa-cream/20" />
       ) : (
-        <span className="inline-block w-7 h-5 sm:w-9 sm:h-7 rounded-sm bg-ink-900/15 dark:bg-ink-50/15 shrink-0" />
+        <span className="inline-block w-7 h-5 sm:w-9 sm:h-7 rounded-sm bg-usa-navy/15 dark:bg-usa-cream/15 shrink-0" />
       )}
       <span
-        className={`font-semibold uppercase tracking-wide leading-tight break-words ${sizeCls} ${
-          isWinner ? "text-ink-900 dark:text-ink-50" : "text-ink-900/85 dark:text-ink-50/85"
+        className={`font-display uppercase tracking-tight leading-[0.92] break-words ${sizeCls} ${
+          isWinner ? "text-usa-red" : "text-usa-navy dark:text-usa-cream"
         }`}
       >
         {display}
@@ -90,6 +87,9 @@ function TeamName({
   );
 }
 
+// A match row done up like a boxing fight card: stage / status badge sits
+// inside a navy chevron, score is in oversized varsity numerals, and a
+// LIVE match gets a red bunting rail down the left and a pulsing siren chip.
 export function MatchCard({ match, ownersByCode }: Props) {
   const homeOwners = match.home ? (ownersByCode.get(match.home.code) ?? []) : [];
   const awayOwners = match.away ? (ownersByCode.get(match.away.code) ?? []) : [];
@@ -100,18 +100,23 @@ export function MatchCard({ match, ownersByCode }: Props) {
 
   return (
     <article
-      className={`relative px-3 sm:px-4 py-3.5 sm:py-4 ${
-        isLive ? "bg-brick-500/[0.07] dark:bg-brick-500/15" : ""
+      className={`relative pl-4 sm:pl-5 pr-3 sm:pr-4 py-4 ${
+        isLive ? "bg-usa-red/[0.08] dark:bg-usa-red/15" : ""
       }`}
     >
-      {isLive && (
-        <span
-          aria-hidden
-          className="absolute inset-y-0 left-0 w-[3px] bg-brick-500 animate-pulse"
-        />
-      )}
+      {/* Left rail: bunting on live, navy on finished, dashed on upcoming */}
+      <span
+        aria-hidden
+        className={`absolute inset-y-0 left-0 w-1.5 ${
+          isLive
+            ? "bunting-v animate-pulse"
+            : isFinished
+              ? "bg-usa-navy dark:bg-usa-cream/60"
+              : "bg-transparent border-l-2 border-dashed border-usa-navy/40 dark:border-usa-cream/40"
+        }`}
+      />
 
-      {/* Top row: team names + center group/status label */}
+      {/* Top row: team names + center stage/status badge */}
       <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-2 sm:gap-3">
         <TeamName
           align="left"
@@ -119,21 +124,23 @@ export function MatchCard({ match, ownersByCode }: Props) {
           name={match.home?.name ?? null}
           isWinner={winner === "home"}
         />
-        <div className="flex flex-col items-center gap-1 min-w-[4.5rem] sm:min-w-[6.5rem]">
+        <div className="flex flex-col items-center gap-1.5 min-w-[5rem] sm:min-w-[7rem]">
           {stageLabel && (
-            <span className="rounded bg-flagblue-500/50 dark:bg-flagblue-400/40 text-ink-900 dark:text-ink-50 uppercase text-[10px] sm:text-xs font-bold tracking-wide px-2 py-0.5 whitespace-nowrap">
+            <span className="font-stencil bg-usa-navy text-usa-cream uppercase text-[10px] sm:text-xs tracking-huge px-2.5 py-1 whitespace-nowrap">
               {stageLabel}
             </span>
           )}
           {isLive ? (
-            <span className="flex items-center gap-1.5 font-bold text-brick-500 dark:text-brick-300 text-xs uppercase whitespace-nowrap">
-              <span aria-hidden className="w-2 h-2 rounded-full bg-brick-500 dark:bg-brick-300 animate-pulse" />
-              Live{match.minuteDisplay && match.minuteDisplay !== "0'" ? `: ${match.minuteDisplay}` : ""}
+            <span className="font-stencil bg-usa-red text-usa-cream px-2 py-0.5 text-[10px] sm:text-xs uppercase tracking-widest flex items-center gap-1.5 animate-siren">
+              <span aria-hidden className="w-1.5 h-1.5 rounded-full bg-usa-cream animate-pulse" />
+              LIVE{match.minuteDisplay && match.minuteDisplay !== "0'" ? ` ${match.minuteDisplay}` : ""}
             </span>
           ) : isFinished ? (
-            <span className="text-xs sm:text-sm uppercase font-light text-ink-900/60 dark:text-ink-50/60">FT</span>
+            <span className="font-stencil text-[10px] sm:text-xs uppercase tracking-huge text-usa-navy/70 dark:text-usa-cream/70">
+              FINAL
+            </span>
           ) : (
-            <span className="text-xs sm:text-sm uppercase font-light text-ink-900/60 dark:text-ink-50/60">vs</span>
+            <span className="font-display text-2xl sm:text-3xl text-usa-red leading-none">VS</span>
           )}
         </div>
         <TeamName
@@ -145,43 +152,43 @@ export function MatchCard({ match, ownersByCode }: Props) {
       </div>
 
       {/* Bottom row: avatars + score-or-date + avatars */}
-      <div className="mt-2 grid grid-cols-[1fr_auto_1fr] items-center gap-2 sm:gap-3">
-        <div className="flex -space-x-1.5 min-h-[1.5rem]">
+      <div className="mt-3 grid grid-cols-[1fr_auto_1fr] items-center gap-2 sm:gap-3">
+        <div className="flex -space-x-2 min-h-[1.75rem]">
           {homeOwners.map((p) => (
             <Avatar
               key={p.name}
               src={p.image}
               alt={p.name}
-              className="w-6 h-6 sm:w-7 sm:h-7"
+              className="w-7 h-7 sm:w-8 sm:h-8 ring-2 ring-usa-red"
             />
           ))}
         </div>
-        <div className="text-center min-w-[4.5rem] sm:min-w-[6.5rem]">
+        <div className="text-center min-w-[5rem] sm:min-w-[7rem]">
           {match.status === "upcoming" ? (
-            <div className="uppercase font-light leading-tight text-base sm:text-lg text-ink-900/75 dark:text-ink-50/75">
+            <div className="font-stencil uppercase leading-tight text-xs sm:text-sm tracking-wider text-usa-navy/80 dark:text-usa-cream/80">
               <div>{formatDay(match.date)}</div>
-              <div className="tab-num">{formatTime(match.date)}</div>
+              <div className="tab-num text-base sm:text-lg text-usa-red">{formatTime(match.date)}</div>
             </div>
           ) : (
-            <div className="font-mono font-bold tab-num text-2xl sm:text-3xl leading-none text-ink-900 dark:text-ink-50">
-              <span className={winner === "home" ? "" : "opacity-50"}>{match.homeScore ?? 0}</span>
+            <div className="font-display tab-num text-3xl sm:text-4xl leading-none text-usa-navy dark:text-usa-cream">
+              <span className={winner === "home" ? "text-usa-red" : "opacity-60"}>{match.homeScore ?? 0}</span>
               <span className="mx-1.5 opacity-30">–</span>
-              <span className={winner === "away" ? "" : "opacity-50"}>{match.awayScore ?? 0}</span>
+              <span className={winner === "away" ? "text-usa-red" : "opacity-60"}>{match.awayScore ?? 0}</span>
               {(match.homePens ?? 0) + (match.awayPens ?? 0) > 0 && (
-                <div className="font-mono text-[10px] font-medium opacity-60 mt-1 tracking-wider">
+                <div className="font-stencil text-[10px] opacity-70 mt-1 tracking-widest">
                   PENS {match.homePens}–{match.awayPens}
                 </div>
               )}
             </div>
           )}
         </div>
-        <div className="flex -space-x-1.5 justify-end min-h-[1.5rem]">
+        <div className="flex -space-x-2 justify-end min-h-[1.75rem]">
           {awayOwners.map((p) => (
             <Avatar
               key={p.name}
               src={p.image}
               alt={p.name}
-              className="w-6 h-6 sm:w-7 sm:h-7"
+              className="w-7 h-7 sm:w-8 sm:h-8 ring-2 ring-usa-navy dark:ring-usa-gold"
             />
           ))}
         </div>
