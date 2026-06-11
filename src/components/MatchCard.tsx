@@ -62,22 +62,22 @@ function TeamName({
   isWinner: boolean;
 }) {
   const display = name ?? "TBD";
-  const sizeCls = display.length > 16
-    ? "text-base sm:text-lg"
-    : display.length > 11
-      ? "text-lg sm:text-xl"
-      : "text-xl sm:text-2xl";
+  const sizeCls = display.length > 11
+    ? "text-xs sm:text-lg"
+    : display.length > 8
+      ? "text-sm sm:text-xl"
+      : "text-base sm:text-2xl";
   return (
     <div
-      className={`flex items-center gap-2.5 sm:gap-3 min-w-0 ${align === "right" ? "flex-row-reverse text-right" : ""}`}
+      className={`flex items-center gap-2 sm:gap-3 min-w-0 ${align === "right" ? "flex-row-reverse text-right" : ""}`}
     >
       {code ? (
-        <Flag code={code} className="h-7 sm:h-8 w-auto shrink-0 ring-2 ring-usa-navy/20 dark:ring-usa-cream/20" />
+        <Flag code={code} className="h-6 sm:h-8 w-auto shrink-0 ring-2 ring-usa-navy/20 dark:ring-usa-cream/20" />
       ) : (
         <span className="inline-block w-7 h-5 sm:w-9 sm:h-7 rounded-sm bg-usa-navy/15 dark:bg-usa-cream/15 shrink-0" />
       )}
       <span
-        className={`font-display uppercase tracking-tight leading-[0.92] break-words ${sizeCls} ${
+        className={`font-display uppercase tracking-tight leading-[0.92] break-words min-w-0 ${sizeCls} ${
           isWinner ? "text-usa-red" : "text-usa-navy dark:text-usa-cream"
         }`}
       >
