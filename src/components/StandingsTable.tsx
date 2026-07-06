@@ -20,8 +20,8 @@ export function StandingsTable({ rows }: Props) {
   return (
     <section className="border-4 border-usa-navy dark:border-usa-cream bg-usa-cream dark:bg-usa-navy-deep shadow-[6px_6px_0_#B22234] overflow-hidden">
       {/* Section banner */}
-      <div className="bg-usa-red text-usa-cream px-3 sm:px-4 py-2 flex items-center justify-between gap-3 border-b-4 border-usa-navy dark:border-usa-cream">
-        <span className="font-display uppercase text-base sm:text-2xl leading-none min-w-0">
+      <div className="bg-usa-red text-usa-cream px-3 sm:px-4 py-2 flex flex-col min-[420px]:flex-row min-[420px]:items-center min-[420px]:justify-between gap-1 min-[420px]:gap-3 border-b-4 border-usa-navy dark:border-usa-cream">
+        <span className="font-display uppercase text-base sm:text-2xl leading-tight min-w-0">
           ★ Leaderboard of the Free ★
         </span>
         <span className="font-stencil text-[9px] sm:text-xs uppercase tracking-huge opacity-90 whitespace-nowrap">

@@ -32,6 +32,7 @@ function fifaMatchStatusToStatus(s: number): MatchStatus {
 function toTeamRef(t: FifaMatch["Home"]): TeamRef | null {
   if (!t) return null;
   return {
+    id: t.IdTeam,
     code: t.IdCountry || t.IdAssociation || t.Abbreviation,
     name: descOf(t.TeamName) || t.ShortClubName || t.Abbreviation,
   };

@@ -1,10 +1,10 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Header } from "../components/Header";
 import { MatchesSection } from "../components/MatchesSection";
 import { StandingsTable } from "../components/StandingsTable";
 import { useSweepstakes } from "../hooks/useSweepstakes";
-import { computePlayerStandings, type Player } from "../lib/sweepstakes";
+import { computePlayerStandings, type Player, type ScoringMode } from "../lib/sweepstakes";
 
 const DEFAULT_GROUP = import.meta.env.PROD ? "lucan" : "development";
 
@@ -12,11 +12,12 @@ export function Sweepstakes() {
   const params = useParams<{ id?: string }>();
   const groupId = params.id ?? DEFAULT_GROUP;
   const { players, snapshot, loading, error } = useSweepstakes(groupId);
+  const [scoringMode, setScoringMode] = useState<ScoringMode>("all");
 
   const playerStandings = useMemo(() => {
     if (!players || !snapshot) return [];
-    return computePlayerStandings(players, snapshot.standings, snapshot.matches);
-  }, [players, snapshot]);
+    return computePlayerStandings(players, snapshot.standings, snapshot.matches, scoringMode);
+  }, [players, snapshot, scoringMode]);
 
   const ownersByCode = useMemo(() => {
     const map = new Map<string, Player[]>();
@@ -56,6 +57,7 @@ export function Sweepstakes() {
           <p className="font-stencil uppercase tracking-huge text-xs opacity-60">⟳ Loading the Republic…</p>
         ) : (
           <>
+            <ScoringModeToggle mode={scoringMode} onModeChange={setScoringMode} />
             <StandingsTable rows={playerStandings} />
             <MatchesSection title="LIVE NOW" matches={live} ownersByCode={ownersByCode} />
             <MatchesSection title="ON THE HORIZON" matches={upcoming} ownersByCode={ownersByCode} />
@@ -75,5 +77,61 @@ export function Sweepstakes() {
         <div aria-hidden className="h-2 bunting" />
       </footer>
     </div>
+  );
+}
+
+function ScoringModeToggle({
+  mode,
+  onModeChange,
+}: {
+  mode: ScoringMode;
+  onModeChange: (mode: ScoringMode) => void;
+}) {
+  return (
+    <div className="flex justify-end">
+      <div
+        className="inline-grid w-full xs:w-auto grid-cols-2 border-2 border-usa-navy dark:border-usa-cream bg-usa-cream dark:bg-usa-navy-deep shadow-[3px_3px_0_#B22234]"
+        role="group"
+        aria-label="Scoring mode"
+      >
+        <ScoringButton
+          active={mode === "all"}
+          onClick={() => onModeChange("all")}
+        >
+          All matches
+        </ScoringButton>
+        <ScoringButton
+          active={mode === "group"}
+          onClick={() => onModeChange("group")}
+        >
+          Group stage
+        </ScoringButton>
+      </div>
+    </div>
+  );
+}
+
+function ScoringButton({
+  active,
+  onClick,
+  children,
+}: {
+  active: boolean;
+  onClick: () => void;
+  children: string;
+}) {
+  return (
+    <button
+      type="button"
+      aria-pressed={active}
+      onClick={onClick}
+      className={`min-h-10 min-w-0 px-2.5 sm:px-4 py-2 font-stencil uppercase tracking-wider text-[10px] sm:text-xs whitespace-nowrap transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-usa-gold ${
+        active
+          ? "bg-usa-red text-usa-cream"
+          : "text-usa-navy dark:text-usa-cream hover:bg-usa-navy/10 dark:hover:bg-usa-cream/10"
+      }`}
+    >
+      {children}
+    </button>
   );
 }

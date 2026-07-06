@@ -74,6 +74,7 @@ export interface FifaResults<T> {
 export type MatchStatus = "upcoming" | "live" | "finished";
 
 export interface TeamRef {
+  id: string;
   code: string;
   name: string;
 }
