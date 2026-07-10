@@ -1,14 +1,17 @@
 import type { PlayerStanding } from "../lib/sweepstakes";
 import { Avatar } from "./Avatar";
 import { Flag } from "./Flag";
+import { Link } from "react-router-dom";
+import { toPersonSlug } from "../lib/person";
 
 interface Props {
   rows: PlayerStanding[];
+  league: string;
 }
 
 // The leaderboard, dressed up as a stadium scoreboard / propaganda poster.
 // Section heading sits in a red banner; #1 wears a gold-star rank chip.
-export function StandingsTable({ rows }: Props) {
+export function StandingsTable({ rows, league }: Props) {
   if (rows.length === 0) {
     return (
       <p className="text-sm opacity-60 px-4 font-sans">
@@ -76,15 +79,17 @@ export function StandingsTable({ rows }: Props) {
                         }`}
                       />
                     )}
-                    <span
-                      className={`font-display uppercase text-xs min-[380px]:text-sm sm:text-xl leading-tight break-words min-w-0 ${
+                    <Link
+                      to={`/${league}/${toPersonSlug(row.player.name)}`}
+                      className={`inline-block font-display uppercase text-xs min-[380px]:text-sm sm:text-xl leading-tight break-words min-w-0 ${
                         isFirst
                           ? "text-usa-red"
                           : "text-usa-navy dark:text-usa-cream"
                       }`}
+                      title={`View fixtures and results for ${row.player.name}`}
                     >
                       {row.player.name}
-                    </span>
+                    </Link>
                   </div>
                 </td>
 

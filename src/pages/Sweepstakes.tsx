@@ -3,14 +3,13 @@ import { useParams } from "react-router-dom";
 import { Header } from "../components/Header";
 import { MatchesSection } from "../components/MatchesSection";
 import { StandingsTable } from "../components/StandingsTable";
+import { DEFAULT_LEAGUE_ID } from "../lib/league";
 import { useSweepstakes } from "../hooks/useSweepstakes";
 import { computePlayerStandings, type Player, type ScoringMode } from "../lib/sweepstakes";
 
-const DEFAULT_GROUP = import.meta.env.PROD ? "lucan" : "development";
-
 export function Sweepstakes() {
-  const params = useParams<{ id?: string }>();
-  const groupId = params.id ?? DEFAULT_GROUP;
+  const params = useParams<{ league?: string }>();
+  const groupId = params.league ?? DEFAULT_LEAGUE_ID;
   const { players, snapshot, loading, error } = useSweepstakes(groupId);
   const [scoringMode, setScoringMode] = useState<ScoringMode>("all");
 
@@ -58,7 +57,7 @@ export function Sweepstakes() {
         ) : (
           <>
             <ScoringModeToggle mode={scoringMode} onModeChange={setScoringMode} />
-            <StandingsTable rows={playerStandings} />
+            <StandingsTable rows={playerStandings} league={groupId} />
             <MatchesSection title="LIVE NOW" matches={live} ownersByCode={ownersByCode} />
             <MatchesSection title="ON THE HORIZON" matches={upcoming} ownersByCode={ownersByCode} />
           </>
